@@ -1,0 +1,13 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+.side-bar{
+  background-color: red;
+  /* width: 200px; */
+  /* align-items: start; */
+}
