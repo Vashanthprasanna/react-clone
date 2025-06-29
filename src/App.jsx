@@ -15,72 +15,91 @@ import {
 } from "@mui/material";
 import { ListItems, ListButton, ListItemWithImg } from "./components/ListItems";
 import Divider from "@mui/material/Divider";
-
 import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/Profile";
+import Settings from "./pages/Settings";
+import { grey } from "@mui/material/colors";
+
 
 function App() {
   return (
-    <div className="app">
-      <Container
-        disableGutters
-        className="side-bar"
-        sx={{
-          ml: 1,
-          mr: 1,
-          width: "220px",
-          borderRadius: "8px",
-          fontSize: "14px",
-          py: 2,
-          height: "auto",
-          backgroundColor: "white",
-          my: 2,
-          px: 1,
-          overflow: "scroll",
-        }}
-      >
-        <Box sx={{ display: "flex", alignItems: "center", px: 2, pt: 2 }}>
-          <img src="./Logo.png" alt="logo" className="logo" />
-          <Typography variant="body1" sx={{ px: 2, fontSize: 14 }}>
-            Creative Tim
+    <Box className="app">
+      <Box sx={{ display: "flex", }}>
+        <Container
+          disableGutters
+          className="side-bar"
+          sx={{
+            height: "97vh",
+            ml: 1,
+            width: "220px",
+            borderRadius: "8px",
+            fontSize: "14px",
+            py: 1,
+            backgroundColor: 'white',
+            my: 1,
+            border: '1px solid grey',
+            overflow: "auto",
+          }}
+        >
+          <Box sx={{ display: "flex", alignItems: "center", px: 2, py: 1 }}>
+            <img src="./Logo.png" alt="logo" className="logo" />
+            <Typography variant="body1" sx={{ px: 2, fontSize: 14 }}>
+              Creative Tim
+            </Typography>
+          </Box>
+          <Divider sx={{ my: 2 }} />
+
+          <ListItemWithImg title="Brooklyn Alice" />
+
+          <Divider sx={{ my: 2 }} />
+
+          <ListItems title="Dashboards" />
+          {/* <Divider /> */}
+
+          <Typography
+            variant="body1"
+            sx={{ px: 2, py: 1, fontWeight: 700, fontSize: 12 }}
+          >
+            PAGES
           </Typography>
+
+          <ListItems title="Pages" />
+          <ListItems title="Account" />
+          <ListItems title="Team" />
+          <ListItems title="Applications" />
+          <ListItems title="Ecommerce" />
+          <ListItems title="Authentication" />
+          <Divider sx={{ my: 2 }} />
+
+          <Typography
+            variant="body1"
+            sx={{ px: 2, py: 1, fontWeight: 700, fontSize: 12 }}
+          >
+            DOCS
+          </Typography>
+
+          <ListItems title="Basic" />
+          <ListItems title="Components" />
+
+          <ListButton title="Change Log" />
+        </Container>
+
+        <Box>
+
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/My Profile" element={<Profile />} />
+              <Route path="/Settings" element={<Settings />} />
+            </Routes>
+          </BrowserRouter>
         </Box>
-        <Divider sx={{ my: 2 }} />
 
-        <ListItemWithImg title="Brooklyn Alice" />
+      </Box>
 
-        <Divider sx={{ my: 2 }} />
-
-        <ListItems title="Dashboards" />
-        {/* <Divider /> */}
-
-        <Typography
-          variant="body1"
-          sx={{ px: 2, py: 1.5, fontWeight: 700, fontSize: 12 }}
-        >
-          PAGES
-        </Typography>
-
-        <ListItems title="Pages" />
-        <ListItems title="Account" />
-        <ListItems title="Team" />
-        <ListItems title="Applications" />
-        <ListItems title="Ecommerce" />
-        <ListItems title="Authentication" />
-        <Divider sx={{ my: 2 }} />
-
-        <Typography
-          variant="body1"
-          sx={{ px: 2, py: 1, fontWeight: 700, fontSize: 12 }}
-        >
-          DOCS
-        </Typography>
-
-        <ListItems title="Basic" />
-        <ListItems title="Components" />
-
-        <ListButton title="Change Log" />
-      </Container>
-    </div>
+    </Box>
   );
 }
 
