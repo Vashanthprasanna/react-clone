@@ -18,12 +18,13 @@ import ViewInArOutlinedIcon from '@mui/icons-material/ViewInArOutlined';
 import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 import DraftsIcon from '@mui/icons-material/Drafts';
 import Avatar from '@mui/material/Avatar';
+import { useState } from 'react';
 // import { Link } from "react-router-dom";
 
 
 
 function ListItems(props) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleClick = () => {
     setOpen((prev) => !prev);
@@ -40,9 +41,6 @@ function ListItems(props) {
     'Basic': <UpcomingOutlinedIcon />,
     'Components': <ViewInArOutlinedIcon />,
     'Change Log': <ReceiptLongOutlinedIcon />,
-    'Basic': <UpcomingOutlinedIcon />,
-    'Components': <ViewInArOutlinedIcon />,
-    'Change Log': <DraftsIcon />,
   }
 
   const listMap = {
@@ -116,8 +114,8 @@ function ListButton(props) {
 }
 
 function ListItemWithImg(props) {
-  const [open, setOpen] = React.useState(false);
-  // const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleClick = () => {
     setOpen((prev) => !prev);

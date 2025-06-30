@@ -25,13 +25,14 @@ import { grey } from "@mui/material/colors";
 
 function App() {
   return (
+    <BrowserRouter>
     <Box className="app">
       <Box sx={{ display: "flex", }}>
         <Container
           disableGutters
           className="side-bar"
           sx={{
-            height: "97vh",
+            height: "100vh",
             ml: 1,
             width: "220px",
             borderRadius: "8px",
@@ -51,7 +52,9 @@ function App() {
           </Box>
           <Divider sx={{ my: 2 }} />
 
-          <ListItemWithImg title="Brooklyn Alice" />
+          
+            <ListItemWithImg title="Brooklyn Alice" />
+
 
           <Divider sx={{ my: 2 }} />
 
@@ -88,18 +91,19 @@ function App() {
 
         <Box>
 
-          <BrowserRouter>
+ 
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/My Profile" element={<Profile />} />
               <Route path="/Settings" element={<Settings />} />
             </Routes>
-          </BrowserRouter>
+
         </Box>
 
       </Box>
 
     </Box>
+    </BrowserRouter>
   );
 }
 

@@ -5,7 +5,6 @@ function Settings() {
   return (
     <>
     <div>Settings</div>
-    <Link to="/My profile"> Hello </Link>
     </>
   )
 }
