@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Typography, TextField, Avatar, Tabs, Tab, Button } from '@mui/material'
+import { Box, Typography, TextField, Avatar, Tabs, Tab, Button, Drawer } from '@mui/material'
 import { Link } from 'react-router-dom'
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
@@ -12,7 +12,21 @@ import Switch from '@mui/material/Switch';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useState } from 'react';
+import CustomDrawer from '../components/Drawer';
+import NavTabs from '../components/NavTabs';
+
+import { styled } from '@mui/material/styles';
+import Badge, { badgeClasses } from '@mui/material/Badge';
+
+
+const CartBadge = styled(Badge)`
+  & .${badgeClasses.badge} {
+    top: -10px;
+    right: 5px;
+  }
+`;
 
 function Profile() {
   const [value, setValue] = useState(0);
@@ -23,9 +37,9 @@ function Profile() {
     setValue(newValue);
   }
   return (
-    <Box sx={{ mx: 3, my: 4 ,backgroundColor: 'aqua', height: '100vh' }}>
+    <Box sx={{ mx: 3, my: 4 ,backgroundColor: 'white', height: 'fit-content' }}>
 
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', width: '80vw', position: 'sticky', top: 20, zIndex: 3, borderRadius: 2, px: 1, backdropFilter: 'saturate(200%) blur(200px)', backgroundColor: 'rgba(255, 255, 255, 0.8)', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', width: '100%', position: 'sticky', top: 20, zIndex: 1, borderRadius: 2, px: 1, backdropFilter: 'saturate(200%) blur(200px)', backgroundColor: 'rgba(255, 255, 255, 0.8)', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
           <MenuIcon sx={{ color: 'grey', mx: 1 }} />
           <Link to="/Settings" style={{ textDecoration: "none", color: "grey" }}>Pages</Link>
@@ -42,10 +56,7 @@ function Profile() {
             <SettingsOutlinedIcon sx={{ color: 'grey', ml: 1 }} />
             <Box sx={{ position: 'relative', display: 'flex', alignItems: 'center', height: 30, width: 35 }}>
               <NotificationsNoneOutlinedIcon sx={{ color: 'grey', ml: 1 }} />
-              <Box sx={{
-                position: 'absolute', top: 0, right: 0, width: '17px', height: '13px', backgroundColor: 'red', borderRadius: '50%', textAlign: 'center', fontSize: 11, color: 'white',
-                // pl:.9,fontSize:11,pt:.2
-              }}>9</Box>
+              <CartBadge badgeContent={9} color="warning" overlap="circular" />
             </Box>
           </Box>
 
@@ -53,14 +64,14 @@ function Profile() {
 
       </Box>
 
-      <Box sx={{my: 3, backgroundImage: `url('./profile-banner.jpeg')`, width: '99%',
-        height: 300, backgroundSize: 'cover',     
+      <Box sx={{my: 3, backgroundImage: `url('./profile-banner.jpeg')`, width: '100%',
+        height: 300,
+        backgroundSize: 'cover',     
         backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat', borderRadius: 3
-      }}>
+        backgroundRepeat: 'no-repeat', borderRadius: 3}}>
+      </Box>
 
-        <Box sx={{border: '1px solid grey', borderRadius: 2, px: 2,pt:2, backgroundColor: 'red', width: '96%', alignItems: 'center', zIndex: 1, top: 250, position: 'relative', mx: 3,
-            }}>
+      <Box sx={{border: '1px solid grey', borderRadius: '8px', px: 2,pt:2, backgroundColor: 'white', width: '96%', alignItems: 'center', top:-90, position: 'relative',mx:3}}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <Avatar alt="Profile" src="/profile_2.jpg" sx={{ width: 74, height: 74 }} />
@@ -71,17 +82,18 @@ function Profile() {
             </Box>
 
             <Box sx={{ bgcolor: 'background.paper' }}>
-              <Tabs value={value} onChange={handleChange} centered>
+              {/* <Tabs value={value} onChange={handleChange} centered>
 
                 <Tab icon={<HomeOutlinedIcon />} label='App' />
                 <Tab icon={<HomeOutlinedIcon />} label='Message' />
                 <Tab icon={<SettingsOutlinedIcon />} label='Settings' />
 
-              </Tabs>
+              </Tabs> */}
+              <NavTabs />
             </Box>
           </Box>
 
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', mt: 5, px: 2, width: '74vw'}}>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', mt: 5, px: 2, width: '76vw'}}>
 
             <Box sx={{ textAlign: 'left', width: '300px' }}>
               <Typography>Platform settings</Typography>
@@ -116,7 +128,7 @@ function Profile() {
 
             <Divider orientation='vertical' />
 
-            <Box sx={{ textAlign: 'left', width: '300px', height: 355 }}>
+            <Box sx={{ textAlign: 'left', width: '330px', height: 355 }}>
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Typography>Profile Information</Typography>
                 <EditOutlinedIcon sx={{ color: 'grey', ml: 1 }} />
@@ -141,7 +153,7 @@ function Profile() {
 
             <Divider orientation='vertical' />
 
-            <Box sx={{ textAlign: 'left', width: '300px' }}>
+            <Box sx={{ textAlign: 'left', width: '330px' }}>
               <Typography>Conversations</Typography>
 
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', my: 2 }}>
@@ -216,16 +228,16 @@ function Profile() {
                 Architects design houses
               </Typography>
 
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
+              <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', backgroundColor: 'white' }}>
 
-                <Box sx={{ width: '240px', backgroundColor: 'white', mt: 3 , mr:2 , height: 350 }}>
+                <Box sx={{ width: '240px', backgroundColor: 'white', mt: 3 , mr:6, height: 350 }}>
                   <img src="./proj_1.jpg" alt="Project 1" width={241} height={137} style={{borderRadius: '10px'}}/>
                   <Typography variant='body2' sx={{ color: 'grey' }}>Project #1</Typography>
                   <Typography variant='h6'>Modern</Typography>
                   <Typography variant='body2' sx={{ color: 'grey', my: 1 }}>As Uber works through a huge amount of internal management turmoil.</Typography>
 
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 2 }}>
-                    <Button variant='outlined'>View Project</Button>
+                    <Button variant='outlined' sx={{borderRadius:2}}>View Project</Button>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       <Avatar src='./conv_profile_1.jpg' alt='profile' sx={{ width: 25, height: 25, border: '2.5px white solid' }}></Avatar>
                       <Avatar src='./conv_profile_2.jpg' alt='profile' sx={{ width: 25, height: 25, ml: -1, border: '2.5px white solid' }}></Avatar>
@@ -235,14 +247,14 @@ function Profile() {
                   </Box>
                 </Box>
 
-                <Box sx={{ width: '240px', backgroundColor: 'white', mt: 3, mr:2 , height: 350}}>
+                <Box sx={{ width: '240px', backgroundColor: 'white', mt: 3, mr:6, height: 350}}>
                   <img src="./proj_2.jpg" alt="Project 2" width={241} height={137}  style={{borderRadius: '10px'}}/>
                   <Typography variant='body2' sx={{ color: 'grey' }}>Project #2</Typography>
                   <Typography variant='h6'>Scandinavian</Typography>
                   <Typography variant='body2' sx={{ color: 'grey', my: 1 }}>Music is something that everyone has their own specific opinion about.</Typography>
 
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 2 }}>
-                    <Button variant='outlined'>View Project</Button>
+                    <Button variant='outlined' sx={{borderRadius:2}}>View Project</Button>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       <Avatar src='./conv_profile_2.jpg' alt='profile' sx={{ width: 25, height: 25, border: '2.5px white solid' }}></Avatar>
                       <Avatar src='./conv_profile_3.jpg' alt='profile' sx={{ width: 25, height: 25, ml: -1, border: '2.5px white solid' }}></Avatar>
@@ -252,14 +264,14 @@ function Profile() {
                   </Box>
                 </Box>
 
-                <Box sx={{ width: '240px', backgroundColor: 'white', mt: 3 , mr:2, height: 350}}>
+                <Box sx={{ width: '240px', backgroundColor: 'white', mt: 3 , mr:6, height: 350}}>
                   <img src="./proj_3.jpg" alt="Project 3" width={241} height={137}  style={{borderRadius: '10px'}}/>
                   <Typography variant='body2' sx={{ color: 'grey' }}>Project #3</Typography>
                   <Typography variant='h6'>Minimalist</Typography>
                   <Typography variant='body2' sx={{ color: 'grey', my: 1 }}>Different people have different taste, and various types of music.</Typography>
 
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 2 }}>
-                    <Button variant='outlined'>View Project</Button>
+                    <Button variant='outlined' sx={{borderRadius:2}}>View Project</Button>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       <Avatar src='./conv_profile_3.jpg' alt='profile' sx={{ width: 25, height: 25, border: '2.5px white solid' }}></Avatar>
                       <Avatar src='./conv_profile_4.jpg' alt='profile' sx={{ width: 25, height: 25, ml: -1, border: '2.5px white solid' }}></Avatar>
@@ -269,14 +281,14 @@ function Profile() {
                   </Box>
                 </Box>
 
-                <Box sx={{ width: '240px', backgroundColor: 'white', mt: 3 , mr:2, height: 350}}>
+                <Box sx={{ width: '240px', backgroundColor: 'white', mt: 3, height: 350}}>
                   <img src="./proj_4.jpeg" alt="Project 4" width={241} height={137}  style={{borderRadius: '10px'}} />
                   <Typography variant='body2' sx={{ color: 'grey' }}>Project #4</Typography>
                   <Typography variant='h6'>Gothic</Typography>
                   <Typography variant='body2' sx={{ color: 'grey', my: 1 }}>Why would anyone pick blue over pink? Pink is obviously a better color.</Typography>
 
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 2 }}>
-                    <Button variant='outlined'>View Project</Button>
+                    <Button variant='outlined' sx={{borderRadius:2}}>View Project</Button>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       <Avatar src='./conv_profile_4.jpg' alt='profile' sx={{ width: 25, height: 25, border: '2.5px white solid' }}></Avatar>
                       <Avatar src='./conv_profile_1.jpg' alt='profile' sx={{ width: 25, height: 25, ml: -1, border: '2.5px white solid' }}></Avatar>
@@ -293,17 +305,26 @@ function Profile() {
           </Box>
         </Box>
 
-
-        <Box sx={{backgroundColor: 'yellow', width: '100%', height: 50, mt: 3, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 2, position: 'relative', top: 20, zIndex: 0 }}>
-          wejknikdw
+        <Box sx={{display: 'flex',justifyContent: 'space-between', alignItems: 'center',px:3}}>
+          <Box sx={{display: 'flex', alignItems: 'center'}}>
+            <Typography variant="body2">&copy; 2025, made with</Typography>
+            <FavoriteIcon sx={{width:16, height:16,mx:.3,color: 'grey'}} /> 
+            <Typography variant="body2"> by <b>Creative Tim</b> for a better web.</Typography>
+          </Box>
+          <Box >
+            <a href='https://www.creative-tim.com/' target='_blank' style={{textDecoration: 'none', color:'inherit',margin:'15px' }}>Creative Tim</a>
+            <a href='https://www.creative-tim.com/presentation' target='_blank' style={{textDecoration: 'none', color:'inherit' ,margin:'15px'}}>About Us</a>
+            <a href='https://www.creative-tim.com/blog' target='_blank' style={{textDecoration: 'none', color:'inherit' ,margin:'15px'}}>Blog</a>
+            <a href='https://www.creative-tim.com/license' target='_blank' style={{textDecoration: 'none', color:'inherit',marginLeft:'15px'}}>License</a>
+      
+          </Box>
         </Box>
 
-
-
-
-
-      </Box>
-
+        <Box sx={{backgroundColor: 'white', display: 'flex', justifyContent: 'end',zIndex
+          : 1,position: 'fixed', bottom: 40, right : 40, borderRadius:7, width:52,height:52, boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'}}>
+          <CustomDrawer />
+          {/* sjbhckjbakjsc */}
+        </Box>
 
     </Box>
   )

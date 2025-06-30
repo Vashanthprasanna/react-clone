@@ -13,7 +13,7 @@ import {
   Collapse,
   Box,
 } from "@mui/material";
-import { ListItems, ListButton, ListItemWithImg } from "./components/ListItems";
+import { ListItems, ListButton, ListItemWithImg, NestedList } from "./components/ListItems";
 import Divider from "@mui/material/Divider";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -33,8 +33,8 @@ function App() {
           className="side-bar"
           sx={{
             height: "100vh",
-            ml: 1,
-            width: "220px",
+            ml: 1.5,
+            width: "230px",
             borderRadius: "8px",
             fontSize: "14px",
             py: 1,
@@ -42,6 +42,8 @@ function App() {
             my: 1,
             border: '1px solid grey',
             overflow: "auto",
+            position: "fixed",
+            top: 0,
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center", px: 2, py: 1 }}>
@@ -68,7 +70,7 @@ function App() {
             PAGES
           </Typography>
 
-          <ListItems title="Pages" />
+          <NestedList title="Pages" />
           <ListItems title="Account" />
           <ListItems title="Team" />
           <ListItems title="Applications" />
@@ -89,15 +91,12 @@ function App() {
           <ListButton title="Change Log" />
         </Container>
 
-        <Box>
-
- 
+        <Box sx={{ ml: 30, width: 'calc(100% - 230px)', height: '100vh', overflow: 'auto'}}>
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/My Profile" element={<Profile />} />
               <Route path="/Settings" element={<Settings />} />
             </Routes>
-
         </Box>
 
       </Box>

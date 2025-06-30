@@ -93,6 +93,75 @@ function ListItems(props) {
   )
 }
 
+function NestedList(props) {
+  const [open, setOpen] = useState(false);
+  const [childOpen, setChildOpen] = useState(false);
+
+  const handleParentClick = () => {
+    setOpen(!open);
+  };
+
+  const handleChildClick = () => {
+    setChildOpen(!childOpen);
+  };
+
+
+  const listMap = {
+    'Projects': [ 'Timeline', 'RTL', 'Widgets', 'Charts', 'Notifications'],
+  }
+
+
+  return (
+
+    <>
+
+     
+
+
+    <List sx={{ width: 200 }}>
+      {/* Parent List Item */}
+      <ListItemButton onClick={handleParentClick}>
+        <ListItemIcon>
+          <InboxIcon />
+        </ListItemIcon>
+        <ListItemText primary="Projects" />
+        {open ? <ExpandLess /> : <ExpandMore />}
+      </ListItemButton>
+
+      <Collapse in={open} timeout="auto" unmountOnExit>
+        <List component="div" disablePadding>
+          {/* Child List Item */}
+          <ListItemButton onClick={handleChildClick} sx={{ pl: 4 }}>
+            <Box>T</Box>
+            <ListItemText primary="Timeline" sx={{ pl: 2 }} />
+            {childOpen ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+
+          {/* Grandchildren items */}
+          <Collapse in={childOpen} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItemButton sx={{ pl: 6 }}>
+                <ListItemText primary="Timeline A" />
+              </ListItemButton>
+              <ListItemButton sx={{ pl: 6 }}>
+                <ListItemText primary="Timeline B" />
+              </ListItemButton>
+            </List>
+          </Collapse>
+
+          {/* Another child */}
+          <ListItemButton sx={{ pl: 4 }}>
+            <Box>W</Box>
+            <ListItemText primary="Widgets" sx={{ pl: 2 }} />
+          </ListItemButton>
+        </List>
+      </Collapse>
+    </List>
+    </>
+
+  )
+}
+
 function ListButton(props) {
 
   const iconMap = {
@@ -156,4 +225,4 @@ function ListItemWithImg(props) {
   )
 }
 
-export { ListItems, ListButton, ListItemWithImg };
+export { ListItems, ListButton, ListItemWithImg, NestedList };
