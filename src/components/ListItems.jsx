@@ -34,15 +34,15 @@ function ListItems(props) {
 
   const iconMap = {
     'Dashboards': <DashboardOutlinedIcon sx={{ fontSize: 20 }} />,
-    'Pages': <PhotoSizeSelectActualOutlinedIcon sx={{ fontSize: 20 }}  />,
-    'Account': <PeopleOutlineOutlinedIcon sx={{ fontSize: 20 }}  />,
-    'Team': <PermIdentityOutlinedIcon sx={{ fontSize: 20 }}  />,
+    'Pages': <PhotoSizeSelectActualOutlinedIcon sx={{ fontSize: 20 }} />,
+    'Account': <PeopleOutlineOutlinedIcon sx={{ fontSize: 20 }} />,
+    'Team': <PermIdentityOutlinedIcon sx={{ fontSize: 20 }} />,
     'Applications': <AppsOutlinedIcon sx={{ fontSize: 20 }} />,
-    'Ecommerce': <ShoppingBasketOutlinedIcon  sx={{ fontSize: 20 }} />,
-    'Authentication': <ContentPasteOutlinedIcon sx={{ fontSize: 20 }}  />,
-    'Basic': <UpcomingOutlinedIcon  sx={{ fontSize: 20 }} />,
-    'Components': <ViewInArOutlinedIcon  sx={{ fontSize: 20 }} />,
-    'Change Log': <ReceiptLongOutlinedIcon sx={{ fontSize: 20 }}  />,
+    'Ecommerce': <ShoppingBasketOutlinedIcon sx={{ fontSize: 20 }} />,
+    'Authentication': <ContentPasteOutlinedIcon sx={{ fontSize: 20 }} />,
+    'Basic': <UpcomingOutlinedIcon sx={{ fontSize: 20 }} />,
+    'Components': <ViewInArOutlinedIcon sx={{ fontSize: 20 }} />,
+    'Change Log': <ReceiptLongOutlinedIcon sx={{ fontSize: 20 }} />,
   }
 
   const listMap = {
@@ -65,11 +65,11 @@ function ListItems(props) {
       <List sx={{ p: 0 }}>
         <ListItemButton onClick={handleClick}>
           <ListItemIcon sx={{ minWidth: 32 }}>
-            {iconMap[props.title] || <DraftsIcon  sx={{ fontSize: 20 , color : 'grey'}} />}
+            {iconMap[props.title] || <DraftsIcon sx={{ fontSize: 20, color: 'grey' }} />}
             {/* <InboxIcon /> */}
           </ListItemIcon>
           <ListItemText primary={props.title} sx={{ '.MuiTypography-root': { fontSize: '12px' } }} />
-          {isOpen ? <ExpandLess  sx={{ fontSize: 20 , color : 'black'}} /> : <ExpandMore  sx={{ fontSize: 20 , color : 'grey'}}/>}
+          {isOpen ? <ExpandLess sx={{ fontSize: 20, color: 'black' }} /> : <ExpandMore sx={{ fontSize: 20, color: 'grey' }} />}
         </ListItemButton>
 
         <Collapse in={isOpen} timeout="auto" unmountOnExit>
@@ -117,15 +117,15 @@ function NestedList(props) {
 
   const iconMap = {
     'Dashboards': <DashboardOutlinedIcon sx={{ fontSize: 18, color: 'gray', mr: 1 }} />,
-    'Pages': <PhotoSizeSelectActualOutlinedIcon sx={{ fontSize: 20 }}  />,
-    'Account': <PeopleOutlineOutlinedIcon sx={{ fontSize: 20 }}  />,
-    'Team': <PermIdentityOutlinedIcon sx={{ fontSize: 20 }}  />,
-    'Applications': <AppsOutlinedIcon  sx={{ fontSize: 20 }} />,
-    'Ecommerce': <ShoppingBasketOutlinedIcon  sx={{ fontSize: 20 }} />,
-    'Authentication': <ContentPasteOutlinedIcon  sx={{ fontSize: 20 }} />,
-    'Basic': <UpcomingOutlinedIcon sx={{ fontSize: 20 }}  />,
-    'Components': <ViewInArOutlinedIcon  sx={{ fontSize: 20 }} />,
-    'Change Log': <ReceiptLongOutlinedIcon sx={{ fontSize: 20 }}  />,
+    'Pages': <PhotoSizeSelectActualOutlinedIcon sx={{ fontSize: 20 }} />,
+    'Account': <PeopleOutlineOutlinedIcon sx={{ fontSize: 20 }} />,
+    'Team': <PermIdentityOutlinedIcon sx={{ fontSize: 20 }} />,
+    'Applications': <AppsOutlinedIcon sx={{ fontSize: 20 }} />,
+    'Ecommerce': <ShoppingBasketOutlinedIcon sx={{ fontSize: 20 }} />,
+    'Authentication': <ContentPasteOutlinedIcon sx={{ fontSize: 20 }} />,
+    'Basic': <UpcomingOutlinedIcon sx={{ fontSize: 20 }} />,
+    'Components': <ViewInArOutlinedIcon sx={{ fontSize: 20 }} />,
+    'Change Log': <ReceiptLongOutlinedIcon sx={{ fontSize: 20 }} />,
   }
 
   const listMap = {
@@ -162,10 +162,10 @@ function NestedList(props) {
         {/* Parent List Item */}
         <ListItemButton onClick={handleParentClick}>
           <ListItemIcon sx={{ minWidth: 32 }}>
-            {iconMap[props.title] || <DraftsIcon   sx={{ fontSize: 20 , color : 'grey'}}/>}
+            {iconMap[props.title] || <DraftsIcon sx={{ fontSize: 20, color: 'grey' }} />}
           </ListItemIcon>
           <ListItemText primary={props.title} sx={{ '.MuiTypography-root': { fontSize: '12px' } }} />
-          {isOpen ? <ExpandLess  sx={{ fontSize: 20 , color : 'black'}} /> : <ExpandMore  sx={{ fontSize: 20 , color : 'grey'}} />}
+          {isOpen ? <ExpandLess sx={{ fontSize: 20, color: 'black' }} /> : <ExpandMore sx={{ fontSize: 20, color: 'grey' }} />}
         </ListItemButton>
 
         <Collapse in={isOpen} timeout="auto" unmountOnExit>
@@ -178,7 +178,7 @@ function NestedList(props) {
 
                     <Box>{item.charAt(0)}</Box>
                     <ListItemText primary={item} sx={{ '.MuiTypography-root': { fontSize: '12px' }, pl: 2 }} />
-                    {props.activeChild === item ? <ExpandLess  sx={{ fontSize: 20 , color : 'black'}} /> : <ExpandMore  sx={{ fontSize: 20 , color : 'grey'}} />}
+                    {props.activeChild === item ? <ExpandLess sx={{ fontSize: 20, color: 'black' }} /> : <ExpandMore sx={{ fontSize: 20, color: 'grey' }} />}
                   </ListItemButton>
 
                   <Collapse in={props.activeChild === item} timeout="auto" unmountOnExit>
@@ -216,7 +216,7 @@ function NestedList(props) {
 function ListButton(props) {
 
   const iconMap = {
-    'Change Log': <ReceiptLongOutlinedIcon sx={{ fontSize: 20 }}  />,
+    'Change Log': <ReceiptLongOutlinedIcon sx={{ fontSize: 20 }} />,
   }
 
   return (
@@ -224,7 +224,7 @@ function ListButton(props) {
       <ListItem disablePadding>
         <ListItemButton>
           <ListItemIcon sx={{ minWidth: 32 }}>
-            {iconMap[props.title] || <DraftsIcon  sx={{ fontSize: 20 , color : 'grey'}} />}
+            {iconMap[props.title] || <DraftsIcon sx={{ fontSize: 20, color: 'grey' }} />}
           </ListItemIcon>
           <ListItemText primary={props.title} sx={{ '.MuiTypography-root': { fontSize: '12px' } }} />
         </ListItemButton>
@@ -254,7 +254,7 @@ function ListItemWithImg(props) {
         <ListItemButton onClick={handleClick}>
           <Avatar alt="Profile" src="/profile.jpg" sx={{ width: 30, height: 30 }} />
           <ListItemText primary={props.title} sx={{ '.MuiTypography-root': { fontSize: '12px', pl: 1 } }} />
-          {isOpen ? <ExpandLess  sx={{ fontSize: 20 , color : 'black'}} /> : <ExpandMore  sx={{ fontSize: 20 , color : 'grey'}} />}
+          {isOpen ? <ExpandLess sx={{ fontSize: 20, color: 'black' }} /> : <ExpandMore sx={{ fontSize: 20, color: 'grey' }} />}
 
         </ListItemButton>
 

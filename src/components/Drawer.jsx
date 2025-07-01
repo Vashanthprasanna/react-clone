@@ -21,7 +21,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 
 export default function CustomDrawer() {
-    const label = { inputProps: { 'aria-label': 'Switch demo' } };
+  const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
   const [state, setState] = React.useState({
     top: false,
@@ -42,101 +42,99 @@ export default function CustomDrawer() {
 
   const list = (anchor) => (
     <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 375 , px:5}}
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 360, px: 5 }}
       role="presentation"
     //   onClick={toggleDrawer(anchor, false)}
     //   onKeyDown={toggleDrawer(anchor, false)}
     >
-        <Box sx={{mt:2,my:2, display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+      <Box sx={{ my: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
 
-<Box>
-            <Typography variant='h6'>Material UI Configurator</Typography>
-            <Typography variant='body1'>See our dashboard options.</Typography>
-</Box>
-
-                <IconButton onClick={toggleDrawer(anchor, false)} >
-                    <CloseOutlinedIcon />
-                </IconButton>
-
+        <Box>
+          <Typography variant='h5' sx={{ fontSize: 20, fontWeight: 700 }}>Material UI Configurator</Typography>
+          <Typography variant='body1' sx={{ color: 'grey' }}>See our dashboard options.</Typography>
         </Box>
+
+        <IconButton onClick={toggleDrawer(anchor, false)} >
+          <CloseOutlinedIcon sx={{ color: 'black', fontSize: 18 }} />
+        </IconButton>
+
+      </Box>
 
       <Divider />
 
       <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-      <Typography variant="subtitle1" fontWeight="bold" sx={{ mt: 2 }}>
-        Sidenav Colors
-      </Typography>
-      <Box sx={{ display: "flex", gap: 1 , mb:1}}>
-        {colors.map((color, index) => (
-          <IconButton
-            key={index}
-            sx={{
-              bgcolor: color,
-              width: 24,
-              height: 24,
-              border: "2px solid black",
-              "&:hover": {
+        <Typography variant="subtitle1" fontWeight="bold" sx={{ mt: 2, fontSize: 16, fontWeight: 700 }}>
+          Sidenav Colors
+        </Typography>
+        <Box sx={{ display: "flex", gap: 1, mb: 1 }}>
+          {colors.map((color, index) => (
+            <IconButton
+              key={index}
+              sx={{
                 bgcolor: color,
-              },
-            }}
-          />
-        ))}
+                width: 24,
+                height: 24,
+                "&:hover": {
+                  bgcolor: color,
+                },
+              }}
+            />
+          ))}
+        </Box>
       </Box>
-    </Box>
-      <Typography variant="subtitle1" fontWeight="bold" sx={{ mt: 2 }}>
+      <Typography variant="subtitle1" fontWeight="bold" sx={{ mt: 2, fontSize: 16, fontWeight: 700, }}>
         Sidenav Type
       </Typography>
-      <p style={{color: 'grey'}}>Choose between different sidenav types.</p>
+      <p style={{ color: 'grey', fontSize: 14 }}>Choose between different sidenav types.</p>
 
-<Box sx={{display:'flex', gap: 1, flexWrap: 'wrap', my:2}}>
-      <Button variant='outlined' sx={{border: '1px solid'}}>Dark</Button>
-      <Button variant='outlined' sx={{border: '1px solid'}}>Transparent</Button>
-      <Button variant='contained'>White</Button>
-</Box>
-      <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', my: 2}}>
-
-        <Typography sx={{fontWeight: 'bold'}} >Navbar Fixed</Typography><Switch {...label} className='toggle' />
+      <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1, flexWrap: 'wrap', my: 2, fontSize: 12, fontWeight: 700 }}>
+        <Button variant='outlined' sx={{ border: 1, fontSize: 12, fontWeight: 700, borderRadius: 2, boxShadow: 'rgba(23, 23, 23, 0.15) 0px 3px 3px 0px, rgba(23, 23, 23, 0.2) 0px 3px 1px -2px, rgba(23, 23, 23, 0.15) 0px 1px 5px 0px' }}>Dark</Button>
+        <Button variant='outlined' sx={{ border: 1, fontSize: 12, fontWeight: 700, borderRadius: 2, boxShadow: 'rgba(23, 23, 23, 0.15) 0px 3px 3px 0px, rgba(23, 23, 23, 0.2) 0px 3px 1px -2px, rgba(23, 23, 23, 0.15) 0px 1px 5px 0px' }}>Transparent</Button>
+        <Button variant='contained' sx={{ fontSize: 12, fontWeight: 700, borderRadius: 2, boxShadow: 'rgba(23, 23, 23, 0.15) 0px 3px 3px 0px, rgba(23, 23, 23, 0.2) 0px 3px 1px -2px, rgba(23, 23, 23, 0.15) 0px 1px 5px 0px' }}>White</Button>
       </Box>
-      <Divider />
-      <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', my: 2}}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', my: 2 }}>
 
-      <Typography sx={{fontWeight: 'bold'}} >Sidenav Mini</Typography><Switch {...label} className='toggle' />
+        <Typography sx={{ fontSize: 16, fontWeight: 700 }} >Navbar Fixed</Typography><Switch {...label} className='toggle' />
       </Box>
-      <Divider />
-      <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', my: 2}}>
+      <Divider sx={{ my: 2 }} />
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', my: 2 }}>
 
-      <Typography sx={{fontWeight: 'bold'}}>Light/Dark</Typography><Switch {...label} className='toggle' />
+        <Typography sx={{ fontSize: 16, fontWeight: 700 }} >Sidenav Mini</Typography><Switch {...label} className='toggle' />
       </Box>
-      <Divider />
+      <Divider sx={{ my: 2 }} />
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', my: 2 }}>
 
-      <Button variant='contained' sx={{width: '100%',my:1}}>Buy Now</Button>
+        <Typography sx={{ fontSize: 16, fontWeight: 700 }}>Light/Dark</Typography><Switch {...label} className='toggle' />
+      </Box>
+      <Divider sx={{ my: 2 }} />
+
+      <Button variant='contained' sx={{ my: 1, borderRadius: 2, height: 40, width: 292, fontSize: 12, fontWeight: 700, boxShadow: 'rgba(23, 23, 23, 0.15) 0px 3px 3px 0px, rgba(23, 23, 23, 0.2) 0px 3px 1px -2px, rgba(23, 23, 23, 0.15) 0px 1px 5px 0px' }}>Buy Now</Button>
       <Button variant=
-      'contained' sx={{width: '100%',my:1}}>Buy Typescript Version</Button>
-      <Button variant='outlined' sx={{border: '1px solid',width: '100%',my:1}}>View Documentation</Button>
+        'contained' sx={{ my: 1, borderRadius: 2, height: 40, width: 292, fontSize: 12, fontWeight: 700, boxShadow: 'rgba(23, 23, 23, 0.15) 0px 3px 3px 0px, rgba(23, 23, 23, 0.2) 0px 3px 1px -2px, rgba(23, 23, 23, 0.15) 0px 1px 5px 0px' }}>Buy Typescript Version</Button>
+      <Button variant='outlined' sx={{ my: 1, borderRadius: 2, height: 40, width: 292, fontSize: 12, fontWeight: 700 }}>View Documentation</Button>
 
-<ButtonGroup
-      disableElevation
-      variant="contained"
-      aria-label="Disabled button group"
-      sx={{width: '100%', my: 2, display: 'flex', justifyContent: 'center', alignItems: 'center'}}
-    >
-      <Button>
-        <StarBorderOutlinedIcon sx={{width: 20, height: 20, mx:.5}} />
-        Star
+      <ButtonGroup
+        disableElevation
+        variant="outlined"
+        sx={{ my: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+      >
+        <Button sx={{ fontSize: 12, fontWeight: 600, textTransform: 'none', p: .5 }} >
+          <StarBorderOutlinedIcon sx={{ width: 16, height: 16, }} />
+          Star
         </Button>
-      <Button>140</Button>
-    </ButtonGroup>
+        <Button sx={{ fontSize: 12, fontWeight: 600, p: .5 }}>140</Button>
+      </ButtonGroup>
 
-      <Typography fontWeight="bold" textAlign="center" sx={{mt:2}}>Thank you for sharing!</Typography>
+      <Typography fontWeight="bold" textAlign="center" sx={{ mt: 2 }}>Thank you for sharing!</Typography>
 
-<Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+      <Box sx={{ display: 'flex', gap: 1, justifyContent: 'center', alignItems: 'center', mb: 4 }}>
 
 
 
-        <Button variant='contained' sx={{border: '1px solid',width: 100,my:1}}> <TwitterIcon sx={{width:25,height:17}}/> Tweet</Button>
-        <Button variant='contained' sx={{border: '1px solid',width: 100,my:1}}> <FacebookIcon sx={{width:25,height:17}} /> Share</Button>
-   
-</Box>
+        <Button variant='contained' sx={{ border: '1px solid', width: 105, my: 1, fontSize: 12, fontWeight: 700, height: 40, borderRadius: 2, boxShadow: 'rgba(23, 23, 23, 0.15) 0px 3px 3px 0px, rgba(23, 23, 23, 0.2) 0px 3px 1px -2px, rgba(23, 23, 23, 0.15) 0px 1px 5px 0px', backgroundColor: 'black' }}> <TwitterIcon sx={{ fontSize: 16, mx: 1 }} /> Tweet</Button>
+        <Button variant='contained' sx={{ border: '1px solid', width: 105, my: 1, fontSize: 12, fontWeight: 700, height: 40, borderRadius: 2, boxShadow: 'rgba(23, 23, 23, 0.15) 0px 3px 3px 0px, rgba(23, 23, 23, 0.2) 0px 3px 1px -2px, rgba(23, 23, 23, 0.15) 0px 1px 5px 0px', backgroundColor: 'black' }}> <FacebookIcon sx={{ fontSize: 16, mx: 1 }} /> Share</Button>
+
+      </Box>
     </Box>
   );
 
@@ -145,8 +143,8 @@ export default function CustomDrawer() {
       {['right'].map((anchor) => (
         <React.Fragment key={anchor}>
           {/* <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button> */}
-          <IconButton onClick={toggleDrawer(anchor, true)} sx={{ right:6,top:5.5}}>
-            <SettingsOutlinedIcon />
+          <IconButton onClick={toggleDrawer(anchor, true)} sx={{ right: 6, top: 5.5 }}>
+            <SettingsOutlinedIcon sx={{ color: 'black' }} />
           </IconButton>
           <Drawer
             anchor={anchor}

@@ -29,7 +29,7 @@ export default function NavTabs() {
           },
           '& .MuiTab-root': {
             minHeight: 48,
-            minWidth: 100,
+            // minWidth: 100,
           },
           '& .Mui-selected': {
             backgroundColor: 'white',

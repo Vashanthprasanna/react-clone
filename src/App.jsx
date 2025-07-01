@@ -44,7 +44,7 @@ function App() {
             sx={{
               height: "calc(100vh - 15px)",
               position: "fixed",
-              px:1,
+              px: 1,
               ml: 1.5,
               width: "220px",
               borderRadius: "8px",
