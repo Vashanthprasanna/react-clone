@@ -24,23 +24,25 @@ import { useState } from 'react';
 
 
 function ListItems(props) {
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
+  const isOpen = props.activeParent === props.title;
 
   const handleClick = () => {
-    setOpen((prev) => !prev);
+    // setOpen((prev) => !prev);
+    props.setActiveParent(isOpen ? null : props.title);
   };
 
   const iconMap = {
-    'Dashboards': <DashboardOutlinedIcon />,
-    'Pages': <PhotoSizeSelectActualOutlinedIcon />,
-    'Account': <PeopleOutlineOutlinedIcon />,
-    'Team': <PermIdentityOutlinedIcon />,
-    'Applications': <AppsOutlinedIcon />,
-    'Ecommerce': <ShoppingBasketOutlinedIcon />,
-    'Authentication': <ContentPasteOutlinedIcon />,
-    'Basic': <UpcomingOutlinedIcon />,
-    'Components': <ViewInArOutlinedIcon />,
-    'Change Log': <ReceiptLongOutlinedIcon />,
+    'Dashboards': <DashboardOutlinedIcon sx={{ fontSize: 20 }} />,
+    'Pages': <PhotoSizeSelectActualOutlinedIcon sx={{ fontSize: 20 }}  />,
+    'Account': <PeopleOutlineOutlinedIcon sx={{ fontSize: 20 }}  />,
+    'Team': <PermIdentityOutlinedIcon sx={{ fontSize: 20 }}  />,
+    'Applications': <AppsOutlinedIcon sx={{ fontSize: 20 }} />,
+    'Ecommerce': <ShoppingBasketOutlinedIcon  sx={{ fontSize: 20 }} />,
+    'Authentication': <ContentPasteOutlinedIcon sx={{ fontSize: 20 }}  />,
+    'Basic': <UpcomingOutlinedIcon  sx={{ fontSize: 20 }} />,
+    'Components': <ViewInArOutlinedIcon  sx={{ fontSize: 20 }} />,
+    'Change Log': <ReceiptLongOutlinedIcon sx={{ fontSize: 20 }}  />,
   }
 
   const listMap = {
@@ -63,25 +65,25 @@ function ListItems(props) {
       <List sx={{ p: 0 }}>
         <ListItemButton onClick={handleClick}>
           <ListItemIcon sx={{ minWidth: 32 }}>
-            {iconMap[props.title] || <DraftsIcon />}
+            {iconMap[props.title] || <DraftsIcon  sx={{ fontSize: 20 , color : 'grey'}} />}
             {/* <InboxIcon /> */}
           </ListItemIcon>
           <ListItemText primary={props.title} sx={{ '.MuiTypography-root': { fontSize: '12px' } }} />
-          {open ? <ExpandLess /> : <ExpandMore />}
+          {isOpen ? <ExpandLess  sx={{ fontSize: 20 , color : 'black'}} /> : <ExpandMore  sx={{ fontSize: 20 , color : 'grey'}}/>}
         </ListItemButton>
 
-        <Collapse in={open} timeout="auto" unmountOnExit>
+        <Collapse in={isOpen} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
 
             {listMap[props.title]?.map((item, index) => (
-              <ListItemButton sx={{ pl: 3 }}>
-                <ListItem key={index} disablePadding>
+              <ListItemButton key={item} sx={{ pl: 3 }}>
+                {/* <ListItem key={index} disablePadding> */}
 
-                  <Box>{item.charAt(0)}</Box>
+                <Box>{item.charAt(0)}</Box>
 
-                  <ListItemText key={index} primary={item} sx={{ '.MuiTypography-root': { fontSize: '12px' }, pl: 2 }} />
+                <ListItemText primary={item} sx={{ '.MuiTypography-root': { fontSize: '12px' }, pl: 2 }} />
 
-                </ListItem>
+                {/* </ListItem> */}
               </ListItemButton>
             ))}
 
@@ -94,20 +96,61 @@ function ListItems(props) {
 }
 
 function NestedList(props) {
-  const [open, setOpen] = useState(false);
-  const [childOpen, setChildOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
+  // const [openChildKey, setOpenChildKey] = useState(null);
+  // const [selectedChild, setSelectedChild] = useState(null);
+
+
+
+  const isOpen = props.activeParent === props.title;
 
   const handleParentClick = () => {
-    setOpen(!open);
+    // setOpen((prev) => !prev);
+    props.setActiveParent(isOpen ? null : props.title);
   };
 
-  const handleChildClick = () => {
-    setChildOpen(!childOpen);
+  const handleChildClick = (item) => {
+    // setSelectedChild(item);
+    // setOpenChildKey((prev) => (prev === item ? null : item));
+    props.setActiveChild(props.activeChild === item ? null : item);
   };
 
+  const iconMap = {
+    'Dashboards': <DashboardOutlinedIcon sx={{ fontSize: 18, color: 'gray', mr: 1 }} />,
+    'Pages': <PhotoSizeSelectActualOutlinedIcon sx={{ fontSize: 20 }}  />,
+    'Account': <PeopleOutlineOutlinedIcon sx={{ fontSize: 20 }}  />,
+    'Team': <PermIdentityOutlinedIcon sx={{ fontSize: 20 }}  />,
+    'Applications': <AppsOutlinedIcon  sx={{ fontSize: 20 }} />,
+    'Ecommerce': <ShoppingBasketOutlinedIcon  sx={{ fontSize: 20 }} />,
+    'Authentication': <ContentPasteOutlinedIcon  sx={{ fontSize: 20 }} />,
+    'Basic': <UpcomingOutlinedIcon sx={{ fontSize: 20 }}  />,
+    'Components': <ViewInArOutlinedIcon  sx={{ fontSize: 20 }} />,
+    'Change Log': <ReceiptLongOutlinedIcon sx={{ fontSize: 20 }}  />,
+  }
 
   const listMap = {
-    'Projects': [ 'Timeline', 'RTL', 'Widgets', 'Charts', 'Notifications'],
+    'Dashboards': ['Analytics', 'Sales'],
+    'Pages': ['Projects', 'Pricing Page', 'RTL', 'Widgets', 'Charts', 'Notifications'],
+    'Account': ['Settings', 'Billing', 'Invoice'],
+    'Team': ['All Projects', 'New User', 'Profile Overview'],
+    'Applications': ['Kanban', 'Wizard', 'Data Tables', 'Calendar'],
+    'Ecommerce': ['Products', 'Orders'],
+    'Authentication': ['Sign In', 'Sign Up', 'Reset Password'],
+    'Basic': ['Getting Started', 'Foundation'],
+    'Components': ['Alerts', 'Avatar', 'Badge', 'Badge Dot', 'Box', 'Buttons', 'Date Picker', 'Dropzone', 'Editor', 'Input', 'Pagination', 'Progress', 'Snackbar', 'Social Button', 'Typography'],
+
+  }
+
+  const listItemsMap = {
+    'Projects': ['Timeline'],
+    'Products': ['New Product', 'Edit Product', 'Product Page'],
+    'Orders': ['Order Details', 'Order List'],
+    'Sign In': ['Basic', 'Cover', 'Illustration'],
+    'Sign Up': ['Cover'],
+    'Reset Password': ['Cover'],
+    'Getting Started': ['Overview', 'License', 'Quick Start', 'Build Tools'],
+    'Foundation': ['Colors', 'Grid', 'Typography', 'Borders', 'Box Shadows', 'Functions', 'Routing System']
+
   }
 
 
@@ -115,48 +158,56 @@ function NestedList(props) {
 
     <>
 
-     
+      <List sx={{ p: 0 }}>
+        {/* Parent List Item */}
+        <ListItemButton onClick={handleParentClick}>
+          <ListItemIcon sx={{ minWidth: 32 }}>
+            {iconMap[props.title] || <DraftsIcon   sx={{ fontSize: 20 , color : 'grey'}}/>}
+          </ListItemIcon>
+          <ListItemText primary={props.title} sx={{ '.MuiTypography-root': { fontSize: '12px' } }} />
+          {isOpen ? <ExpandLess  sx={{ fontSize: 20 , color : 'black'}} /> : <ExpandMore  sx={{ fontSize: 20 , color : 'grey'}} />}
+        </ListItemButton>
+
+        <Collapse in={isOpen} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            {/* Child List Item */}
+            {listMap[props.title]?.map((item, index) => (
+              props.subTitles?.includes(item) ? (
+                <div key={item}>
+                  <ListItemButton onClick={() => handleChildClick(item)} sx={{ pl: 3 }}>
+
+                    <Box>{item.charAt(0)}</Box>
+                    <ListItemText primary={item} sx={{ '.MuiTypography-root': { fontSize: '12px' }, pl: 2 }} />
+                    {props.activeChild === item ? <ExpandLess  sx={{ fontSize: 20 , color : 'black'}} /> : <ExpandMore  sx={{ fontSize: 20 , color : 'grey'}} />}
+                  </ListItemButton>
+
+                  <Collapse in={props.activeChild === item} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+                      {listItemsMap[item]?.map((subItem, index) => (
+                        <ListItemButton key={subItem} sx={{ pl: 3 }}>
+
+                          <Box>{subItem.charAt(0)}</Box>
+                          <ListItemText primary={subItem} sx={{ '.MuiTypography-root': { fontSize: '12px' }, pl: 2 }} />
 
 
-    <List sx={{ width: 200 }}>
-      {/* Parent List Item */}
-      <ListItemButton onClick={handleParentClick}>
-        <ListItemIcon>
-          <InboxIcon />
-        </ListItemIcon>
-        <ListItemText primary="Projects" />
-        {open ? <ExpandLess /> : <ExpandMore />}
-      </ListItemButton>
+                        </ListItemButton>
+                      ))}
 
-      <Collapse in={open} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          {/* Child List Item */}
-          <ListItemButton onClick={handleChildClick} sx={{ pl: 4 }}>
-            <Box>T</Box>
-            <ListItemText primary="Timeline" sx={{ pl: 2 }} />
-            {childOpen ? <ExpandLess /> : <ExpandMore />}
-          </ListItemButton>
+                    </List>
+                  </Collapse>
+                </div>
+              ) : (
+                <ListItemButton key={item} sx={{ pl: 3 }}>
+                  <Box>{item.charAt(0)}</Box>
+                  <ListItemText primary={item} sx={{ '.MuiTypography-root': { fontSize: '12px' }, pl: 2 }} />
+                </ListItemButton>
+              )
+            ))}
 
-          {/* Grandchildren items */}
-          <Collapse in={childOpen} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItemButton sx={{ pl: 6 }}>
-                <ListItemText primary="Timeline A" />
-              </ListItemButton>
-              <ListItemButton sx={{ pl: 6 }}>
-                <ListItemText primary="Timeline B" />
-              </ListItemButton>
-            </List>
-          </Collapse>
 
-          {/* Another child */}
-          <ListItemButton sx={{ pl: 4 }}>
-            <Box>W</Box>
-            <ListItemText primary="Widgets" sx={{ pl: 2 }} />
-          </ListItemButton>
-        </List>
-      </Collapse>
-    </List>
+          </List>
+        </Collapse>
+      </List>
     </>
 
   )
@@ -165,7 +216,7 @@ function NestedList(props) {
 function ListButton(props) {
 
   const iconMap = {
-    'Change Log': <ReceiptLongOutlinedIcon />,
+    'Change Log': <ReceiptLongOutlinedIcon sx={{ fontSize: 20 }}  />,
   }
 
   return (
@@ -173,7 +224,7 @@ function ListButton(props) {
       <ListItem disablePadding>
         <ListItemButton>
           <ListItemIcon sx={{ minWidth: 32 }}>
-            {iconMap[props.title] || <DraftsIcon />}
+            {iconMap[props.title] || <DraftsIcon  sx={{ fontSize: 20 , color : 'grey'}} />}
           </ListItemIcon>
           <ListItemText primary={props.title} sx={{ '.MuiTypography-root': { fontSize: '12px' } }} />
         </ListItemButton>
@@ -183,11 +234,13 @@ function ListButton(props) {
 }
 
 function ListItemWithImg(props) {
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
+  const isOpen = props.activeParent === props.title;
   const navigate = useNavigate();
 
   const handleClick = () => {
-    setOpen((prev) => !prev);
+    // setOpen((prev) => !prev);
+    props.setActiveParent(isOpen ? null : props.title);
   };
 
   const listMap = {
@@ -201,18 +254,18 @@ function ListItemWithImg(props) {
         <ListItemButton onClick={handleClick}>
           <Avatar alt="Profile" src="/profile.jpg" sx={{ width: 30, height: 30 }} />
           <ListItemText primary={props.title} sx={{ '.MuiTypography-root': { fontSize: '12px', pl: 1 } }} />
-          {open ? <ExpandLess /> : <ExpandMore />}
+          {isOpen ? <ExpandLess  sx={{ fontSize: 20 , color : 'black'}} /> : <ExpandMore  sx={{ fontSize: 20 , color : 'grey'}} />}
 
         </ListItemButton>
 
-        <Collapse in={open} timeout="auto" unmountOnExit>
+        <Collapse in={isOpen} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             {listMap[props.title]?.map((item, index) => (
               <ListItemButton sx={{ pl: 3 }} onClick={() => navigate(`/${item}`)} >
                 <ListItem key={index} disablePadding>
 
                   <Box>{item.charAt(0)}</Box>
-                  <ListItemText key={index} primary={item} sx={{ '.MuiTypography-root': { fontSize: '12px' }, pl: 2 }} />
+                  <ListItemText primary={item} sx={{ '.MuiTypography-root': { fontSize: '12px' }, pl: 2 }} />
 
 
                 </ListItem>

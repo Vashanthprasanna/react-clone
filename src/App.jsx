@@ -24,84 +24,96 @@ import { grey } from "@mui/material/colors";
 
 
 function App() {
+  const [activeParent, setActiveParent] = useState(null);
+  const [activeChild, setActiveChild] = useState(null);
+
+  const nestedListProps = {
+    activeParent,
+    setActiveParent,
+    activeChild,
+    setActiveChild
+  };
+
   return (
     <BrowserRouter>
-    <Box className="app">
-      <Box sx={{ display: "flex", }}>
-        <Container
-          disableGutters
-          className="side-bar"
-          sx={{
-            height: "100vh",
-            ml: 1.5,
-            width: "230px",
-            borderRadius: "8px",
-            fontSize: "14px",
-            py: 1,
-            backgroundColor: 'white',
-            my: 1,
-            border: '1px solid grey',
-            overflow: "auto",
-            position: "fixed",
-            top: 0,
-          }}
-        >
-          <Box sx={{ display: "flex", alignItems: "center", px: 2, py: 1 }}>
-            <img src="./Logo.png" alt="logo" className="logo" />
-            <Typography variant="body1" sx={{ px: 2, fontSize: 14 }}>
-              Creative Tim
+      <Box className="app">
+        <Box sx={{ display: "flex", }}>
+          <Container
+            disableGutters
+            className="side-bar"
+            sx={{
+              height: "calc(100vh - 15px)",
+              position: "fixed",
+              px:1,
+              ml: 1.5,
+              width: "220px",
+              borderRadius: "8px",
+              fontSize: "14px",
+              py: 1,
+              backgroundColor: 'white',
+              my: 1,
+              boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+              border: '1px solid rgba(229, 229, 229)',
+              overflow: "auto",
+              top: 0,
+            }}
+          >
+            <Box sx={{ display: "flex", alignItems: "center", px: 2, py: 1 }}>
+              <img src="./Logo.png" alt="logo" className="logo" />
+              <Typography variant="body1" sx={{ px: 2, fontSize: 14 }}>
+                Creative Tim
+              </Typography>
+            </Box>
+            <Divider sx={{ my: 2 }} />
+
+
+            <ListItemWithImg title="Brooklyn Alice" {...nestedListProps} />
+
+
+            <Divider sx={{ my: 2 }} />
+
+            <ListItems title="Dashboards" {...nestedListProps} />
+            {/* <Divider /> */}
+
+            <Typography
+              variant="body1"
+              sx={{ px: 2, py: 1, fontWeight: 700, fontSize: 12 }}
+            >
+              PAGES
             </Typography>
-          </Box>
-          <Divider sx={{ my: 2 }} />
 
-          
-            <ListItemWithImg title="Brooklyn Alice" />
+            <NestedList title="Pages" subTitles={["Projects"]} {...nestedListProps} />
+            <ListItems title="Account" {...nestedListProps} />
+            <ListItems title="Team" {...nestedListProps} />
+            <ListItems title="Applications" {...nestedListProps} />
+            <NestedList title="Ecommerce" subTitles={["Products", "Orders"]} {...nestedListProps} />
+            <NestedList title="Authentication" subTitles={["Sign In", "Sign Up", "Reset Password"]} {...nestedListProps} />
+            <Divider sx={{ my: 2 }} />
 
+            <Typography
+              variant="body1"
+              sx={{ px: 2, py: 1, fontWeight: 700, fontSize: 12 }}
+            >
+              DOCS
+            </Typography>
 
-          <Divider sx={{ my: 2 }} />
+            <NestedList title="Basic" subTitles={["Getting Started", "Foundation"]} {...nestedListProps} />
+            <NestedList title="Components" {...nestedListProps} />
 
-          <ListItems title="Dashboards" />
-          {/* <Divider /> */}
+            <ListButton title="Change Log" />
+          </Container>
 
-          <Typography
-            variant="body1"
-            sx={{ px: 2, py: 1, fontWeight: 700, fontSize: 12 }}
-          >
-            PAGES
-          </Typography>
-
-          <NestedList title="Pages" />
-          <ListItems title="Account" />
-          <ListItems title="Team" />
-          <ListItems title="Applications" />
-          <ListItems title="Ecommerce" />
-          <ListItems title="Authentication" />
-          <Divider sx={{ my: 2 }} />
-
-          <Typography
-            variant="body1"
-            sx={{ px: 2, py: 1, fontWeight: 700, fontSize: 12 }}
-          >
-            DOCS
-          </Typography>
-
-          <ListItems title="Basic" />
-          <ListItems title="Components" />
-
-          <ListButton title="Change Log" />
-        </Container>
-
-        <Box sx={{ ml: 30, width: 'calc(100% - 230px)', height: '100vh', overflow: 'auto'}}>
+          <Box sx={{ ml: 30, width: 'calc(100% - 230px)', height: '100vh', overflow: 'auto' }}>
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/My Profile" element={<Profile />} />
               <Route path="/Settings" element={<Settings />} />
             </Routes>
+          </Box>
+
         </Box>
 
       </Box>
-
-    </Box>
     </BrowserRouter>
   );
 }
