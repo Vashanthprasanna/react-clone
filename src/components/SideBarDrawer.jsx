@@ -63,6 +63,8 @@ export default function SideBarDrawer() {
         right: false,
     });
 
+    const [drawerOpen, setDrawerOpen] = useState(false);
+
     const colors = ["#e91e63", "#212121", "#424242", "#4caf50", "#ff9800", "#f44336"];
 
     const toggleDrawer = (anchor, open) => (event) => {
@@ -71,6 +73,7 @@ export default function SideBarDrawer() {
         }
 
         setState({ ...state, [anchor]: open });
+        setDrawerOpen(open);
     };
 
     const list = (anchor) => (
@@ -160,7 +163,7 @@ export default function SideBarDrawer() {
                 <React.Fragment key={anchor}>
                     {/* <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button> */}
                     <IconButton onClick={toggleDrawer(anchor, true)} >
-                        {anchor ? <MenuOpenOutlinedIcon /> : <MenuOutlinedIcon />}
+                        {drawerOpen ? <MenuOutlinedIcon /> : <MenuOpenOutlinedIcon />}
                     </IconButton>
                     <Drawer
                         anchor={anchor}

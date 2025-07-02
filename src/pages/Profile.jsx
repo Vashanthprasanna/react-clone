@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Typography, TextField, Avatar, Tabs, Tab, Button, Drawer } from '@mui/material'
+import { Box, Typography, TextField, Avatar, Tabs, Button, Drawer,Tab, Paper } from '@mui/material'
 import { Link } from 'react-router-dom'
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
@@ -17,6 +17,11 @@ import { useState } from 'react';
 import CustomDrawer from '../components/Drawer';
 import NavTabs from '../components/NavTabs';
 import SideBarDrawer from '../components/SideBarDrawer';
+import HomeIcon from "@mui/icons-material/HomeOutlined";
+import EmailIcon from "@mui/icons-material/EmailOutlined";
+import SettingsIcon from "@mui/icons-material/SettingsOutlined";
+import Toggle from '../components/Toggle.jsx'
+
 import '../App.css';
 
 import { styled } from '@mui/material/styles';
@@ -38,6 +43,9 @@ function Profile() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   }
+
+
+
   return (
     <Box sx={{ mx: 2, mt: 4, backgroundColor: 'white', height: 'fit-content'}}>
 
@@ -93,7 +101,64 @@ function Profile() {
           </Box>
 
           <Box sx={{ bgcolor: 'background.paper' }}>
+            {/* <Toggle /> */}
 
+             <Paper
+      elevation={0}
+      sx={{
+        display: "inline-block",
+        borderRadius: 2,
+        p: 0.5,
+        backgroundColor: "#f5f5f5",
+      }}
+    >
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        variant="standard"
+        sx={{
+          "& .MuiTabs-indicator": { display: "none" },
+        }}
+      >
+        <Tab
+          icon={<HomeIcon />}
+          label="App"
+          sx={{
+            textTransform: "none",
+            borderRadius: 2,
+            minHeight: 48,
+            minWidth: 120,
+            backgroundColor: value === 0 ? "white" : "transparent",
+            boxShadow: value === 0 ? 1 : "none",
+          }}
+        />
+        <Tab
+          icon={<EmailIcon />}
+          label="Message"
+          sx={{
+            textTransform: "none",
+            borderRadius: 2,
+            minHeight: 48,
+            minWidth: 120,
+            backgroundColor: value === 1 ? "white" : "transparent",
+            boxShadow: value === 1 ? 1 : "none",
+          }}
+        />
+        <Tab
+          icon={<SettingsIcon />}
+          label="Settings"
+          sx={{
+            textTransform: "none",
+            borderRadius: 2,
+            minHeight: 48,
+            minWidth: 120,
+            backgroundColor: value === 2 ? "white" : "transparent",
+            boxShadow: value === 2 ? 1 : "none",
+          }}
+        />
+      </Tabs>
+    </Paper>
+              
             {/* <NavTabs /> */}
           </Box>
         </Box>
