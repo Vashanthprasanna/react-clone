@@ -16,6 +16,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useState } from 'react';
 import CustomDrawer from '../components/Drawer';
 import NavTabs from '../components/NavTabs';
+import SideBarDrawer from '../components/SideBarDrawer';
+import '../App.css';
 
 import { styled } from '@mui/material/styles';
 import Badge, { badgeClasses } from '@mui/material/Badge';
@@ -37,7 +39,7 @@ function Profile() {
     setValue(newValue);
   }
   return (
-    <Box sx={{ mx: 2, my: 4, backgroundColor: 'white', height: 'fit-content' }}>
+    <Box sx={{ mx: 2, mt: 4, backgroundColor: 'white', height: 'fit-content'}}>
 
       <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', width: '100%', position: 'sticky', top: 20, zIndex: 2, borderRadius: 2, px: 1, backdropFilter: 'saturate(200%) blur(200px)', backgroundColor: 'rgba(255, 255, 255, 0.8)', }}>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
@@ -48,15 +50,20 @@ function Profile() {
           <Typography variant="body1" sx={{ mx: 1 }}>/</Typography>
           <Typography variant="body1" sx={{ fontSize: 14, fontWeight: 700 }}>Profile Overview</Typography>
         </Box>
+
         <Box sx={{ display: 'flex', alignItems: 'center', px: 1, py: 1 }}>
           <TextField label="Search here" size="small" />
           <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', px: 1 }}>
 
             <AccountCircleOutlinedIcon sx={{ color: 'grey', ml: 1 }} />
+            <Box className="sidebar-drawer-icon" >
+                <SideBarDrawer  />
+              </Box>
             <SettingsOutlinedIcon sx={{ color: 'grey', ml: 1 }} />
             <Box sx={{ position: 'relative', display: 'flex', alignItems: 'center', height: 30, width: 35 }}>
               <NotificationsNoneOutlinedIcon sx={{ color: 'grey', ml: 1 }} />
               <CartBadge badgeContent={9} color="warning" overlap="circular" />
+              
             </Box>
           </Box>
 
@@ -230,9 +237,9 @@ function Profile() {
           </Typography>
         </Box>
 
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', backgroundColor: 'white', px: 3, pb: 2, gap: 5, justifyContent: 'center' }}>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', backgroundColor: 'white', px: 3, pb: 2, gap: 5, justifyContent: 'center' }}>
 
-          <Box sx={{ flexBasis: '240px', flexGrow: 1, backgroundColor: 'white', mt: 3, height: 'fit-content', py: 1 }}>
+          <Box sx={{ flexBasis: '200px', flexGrow: 1, backgroundColor: 'white', mt: 3, height: 'fit-content', py: 1 }}>
             <img src="./proj_1.jpg" alt="Project 1" width="auto" style={{ borderRadius: '10px', maxWidth: "100%" }} />
             <Typography variant='body2' sx={{ color: 'grey', fontSize: 14, fontWeight: 400, my: 1 }}>Project #1</Typography>
             <Typography variant='h6'>Modern</Typography>
@@ -249,7 +256,7 @@ function Profile() {
             </Box>
           </Box>
 
-          <Box sx={{ flexBasis: '240px', flexGrow: 1, backgroundColor: 'white', mt: 3, height: 'fit-content', py: 1 }}>
+          <Box sx={{ flexBasis: '200px', flexGrow: 1, backgroundColor: 'white', mt: 3, height: 'fit-content', py: 1 }}>
             <img src="./proj_2.jpg" alt="Project 2" width="auto" style={{ borderRadius: '10px', maxWidth: "100%" }} />
             <Typography variant='body2' sx={{ color: 'grey', fontSize: 14, fontWeight: 400, my: 1 }}>Project #2</Typography>
             <Typography variant='h6'>Scandinavian</Typography>
@@ -266,11 +273,11 @@ function Profile() {
             </Box>
           </Box>
 
-          <Box sx={{ flexBasis: '240px', flexGrow: 1, backgroundColor: 'white', mt: 3, height: 'fit-content', py: 1 }}>
+          <Box sx={{ flexBasis: '200px', flexGrow: 1, backgroundColor: 'white', mt: 3, height: 'fit-content', py: 1 }}>
             <img src="./proj_3.jpg" alt="Project 3" width="auto" style={{ borderRadius: '10px', maxWidth: "100%" }} />
             <Typography variant='body2' sx={{ color: 'grey', fontSize: 14, fontWeight: 400, my: 1 }}>Project #3</Typography>
             <Typography variant='h6'>Minimalist</Typography>
-            <Typography variant='body2' sx={{ color: 'grey', my: 1 }}>Different people have different taste, and various types of music.</Typography>
+            <Typography variant='body2' sx={{ color: 'grey', my: 1 }}>Different people have different taste, and various types of choice & music.</Typography>
 
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 2 }}>
               <Button variant='outlined' sx={{ borderRadius: 2, fontSize: 12, fontWeight: 700 }}>View Project</Button>
@@ -283,7 +290,7 @@ function Profile() {
             </Box>
           </Box>
 
-          <Box sx={{ flexBasis: '240px', flexGrow: 1, backgroundColor: 'white', mt: 3, height: 'fit-content', py: 1 }}>
+          <Box sx={{ flexBasis: '200px', flexGrow: 1, backgroundColor: 'white', mt: 3, height: 'fit-content', py: 1 }}>
             <img src="./proj_4.jpeg" alt="Project 4" width="auto" style={{ borderRadius: '10px', maxWidth: "100%" }} />
             <Typography variant='body2' sx={{ color: 'grey', fontSize: 14, fontWeight: 400, my: 1 }}>Project #4</Typography>
             <Typography variant='h6'>Gothic</Typography>
@@ -303,18 +310,19 @@ function Profile() {
         </Box>
       </Box>
 
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', textAlign: 'center', backgroundColor: 'white', color: 'grey' }}>
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', backgroundColor: 'white', px: 4 }}>
-          <Typography variant="body2" sx={{ textAlign: 'center' }}>&copy; 2025, made with</Typography>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'white', color: 'grey' }}>
+        
+        <Box sx={{ display: 'flex', alignItems: 'center', px: 4, flexBasis: '500px' , flexGrow:1, textAlign: 'center', backgroundColor: 'white'}}>
+          <Typography variant="body2" >&copy; 2025, made with</Typography>
           <FavoriteIcon sx={{ width: 16, height: 16, mx: .3, color: 'grey' }} />
           <Typography variant="body2"> by <span style={{ color: 'black' }}>Creative Tim</span> for a better web.</Typography>
         </Box>
+        
         <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
           <a href='https://www.creative-tim.com/' target='_blank' style={{ textDecoration: 'none', color: 'inherit', margin: '15px' }}>Creative Tim</a>
           <a href='https://www.creative-tim.com/presentation' target='_blank' style={{ textDecoration: 'none', color: 'inherit', margin: '15px' }}>About Us</a>
           <a href='https://www.creative-tim.com/blog' target='_blank' style={{ textDecoration: 'none', color: 'inherit', margin: '15px' }}>Blog</a>
           <a href='https://www.creative-tim.com/license' target='_blank' style={{ textDecoration: 'none', color: 'inherit', margin: '15px' }}>License</a>
-
         </Box>
       </Box>
 
@@ -323,7 +331,6 @@ function Profile() {
           : 1, position: 'fixed', bottom: 40, right: 40, borderRadius: 7, width: 52, height: 52, boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
       }}>
         <CustomDrawer />
-        {/* sjbhckjbakjsc */}
       </Box>
 
     </Box>

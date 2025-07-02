@@ -37,7 +37,7 @@ function App() {
   return (
     <BrowserRouter>
       <Box className="app">
-        <Box sx={{ display: "flex", }}>
+        <Box sx={{ display: "flex" }}>
           <Container
             disableGutters
             className="side-bar"
@@ -56,9 +56,10 @@ function App() {
               border: '1px solid rgba(229, 229, 229)',
               overflow: "auto",
               top: 0,
+              zIndex:1200
             }}
           >
-            <Box sx={{ display: "flex", alignItems: "center", px: 2, py: 1 }}>
+            <Box sx={{ display: "flex", alignItems: "center", px: 2, pt: 1 }}>
               <img src="./Logo.png" alt="logo" className="logo" />
               <Typography variant="body1" sx={{ px: 2, fontSize: 14 }}>
                 Creative Tim
@@ -103,7 +104,7 @@ function App() {
             <ListButton title="Change Log" />
           </Container>
 
-          <Box sx={{ ml: 30, width: 'calc(100% - 230px)', height: '100vh', overflow: 'auto' }}>
+          <Box sx={{ ml: 30, width: 'calc(100% - 230px)', height: '100vh', overflow: 'auto' }} className="main-content">
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/My Profile" element={<Profile />} />

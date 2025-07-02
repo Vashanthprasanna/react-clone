@@ -23,3 +23,33 @@ body {
 .logo {
   width: 28px;
 }
+/* 
+@media screen and (min-width: 1200px) {
+  .side-bar{
+    display : hidden;
+  }
+} */
+
+/* .side-bar{
+    display: none;
+    position: relative;
+  } */
+
+   .sidebar-drawer-icon{
+    display: none;
+  }
+
+  @media screen and (max-width: 768px) {
+  .side-bar {
+    display: none !important;
+  }
+
+  .main-content {
+   margin-left: 0 !important;
+    width: 100vw !important;
+  }
+
+  .sidebar-drawer-icon{
+    display: block;
+  }
+}
