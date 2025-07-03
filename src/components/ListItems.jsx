@@ -65,7 +65,7 @@ function ListItems(props) {
       <List sx={{ p: 0 }}>
         <ListItemButton onClick={handleClick}>
           <ListItemIcon sx={{ minWidth: 32 }}>
-            {iconMap[props.title] || <DraftsIcon sx={{ fontSize: 20, color: 'grey' }} /> }
+            {iconMap[props.title] || <DraftsIcon sx={{ fontSize: 20, color: 'grey' }} />}
             {/* <InboxIcon /> */}
           </ListItemIcon>
           <ListItemText primary={props.title} sx={{ '.MuiTypography-root': { fontSize: '12px' } }} />

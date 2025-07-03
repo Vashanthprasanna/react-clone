@@ -24,11 +24,11 @@ export default function NavTabs() {
             borderRadius: 2,
             backgroundColor: 'white',
             boxShadow: 1,
-            height: '100%',
+            // height: '100%',
             zIndex: 0,
           },
           '& .MuiTab-root': {
-            minHeight: 48,
+            // minHeight: 48,
             // minWidth: 100,
           },
           '& .Mui-selected': {
@@ -38,7 +38,7 @@ export default function NavTabs() {
           },
         }}
       >
-        <Tab icon={<HomeIcon />} label="App" />
+        <Tab icon={<HomeIcon sx={{ height: 20, width: 20 }} />} label="App" />
         <Tab icon={<EmailIcon />} label="Message" />
         <Tab icon={<SettingsIcon />} label="Settings" />
       </Tabs>

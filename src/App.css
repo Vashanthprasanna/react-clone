@@ -2,8 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
-  ;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
@@ -35,21 +34,38 @@ body {
     position: relative;
   } */
 
-   .sidebar-drawer-icon{
-    display: none;
-  }
+.sidebar-drawer-icon {
+  display: none;
+}
 
-  @media screen and (max-width: 1200px) {
+@media screen and (max-width: 1200px) {
   .side-bar {
     display: none !important;
   }
 
   .main-content {
-   margin-left: 0 !important;
+    margin-left: 0 !important;
     width: 100vw !important;
   }
 
-  .sidebar-drawer-icon{
+  .sidebar-drawer-icon {
     display: block;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .footer {
+    display: flex;
+    justify-content: center !important;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .settings-sidebar {
+    width: 100% !important;
+  }
+
+  .settings-body {
+    flex-wrap: wrap;
   }
 }

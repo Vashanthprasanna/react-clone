@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Typography, TextField, Avatar, Tabs, Button, Drawer,Tab, Paper } from '@mui/material'
+import { Box, Typography, TextField, Avatar, Tabs, Button, Drawer, Tab, Paper } from '@mui/material'
 import { Link } from 'react-router-dom'
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
@@ -21,9 +21,7 @@ import HomeIcon from "@mui/icons-material/HomeOutlined";
 import EmailIcon from "@mui/icons-material/EmailOutlined";
 import SettingsIcon from "@mui/icons-material/SettingsOutlined";
 import Toggle from '../components/Toggle.jsx'
-
 import '../App.css';
-
 import { styled } from '@mui/material/styles';
 import Badge, { badgeClasses } from '@mui/material/Badge';
 
@@ -47,7 +45,7 @@ function Profile() {
 
 
   return (
-    <Box sx={{ mx: 2, mt: 4, backgroundColor: 'white', height: 'fit-content'}}>
+    <Box sx={{ mx: 2, mt: 4, backgroundColor: 'white', height: 'fit-content' }}>
 
       <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', width: '100%', position: 'sticky', top: 20, zIndex: 2, borderRadius: 2, px: 1, backdropFilter: 'saturate(200%) blur(200px)', backgroundColor: 'rgba(255, 255, 255, 0.8)', }}>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
@@ -65,13 +63,13 @@ function Profile() {
 
             <AccountCircleOutlinedIcon sx={{ color: 'grey', ml: 1 }} />
             <Box className="sidebar-drawer-icon" >
-                <SideBarDrawer  />
-              </Box>
+              <SideBarDrawer />
+            </Box>
             <SettingsOutlinedIcon sx={{ color: 'grey', ml: 1 }} />
             <Box sx={{ position: 'relative', display: 'flex', alignItems: 'center', height: 30, width: 35 }}>
               <NotificationsNoneOutlinedIcon sx={{ color: 'grey', ml: 1 }} />
               <CartBadge badgeContent={9} color="warning" overlap="circular" />
-              
+
             </Box>
           </Box>
 
@@ -91,7 +89,7 @@ function Profile() {
       </Box>
 
       <Box sx={{ borderRadius: '8px', px: 2, pt: 2, pb: 5, backgroundColor: 'white', alignItems: 'center', top: -90, position: 'relative', mx: 3, boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)' }}>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Avatar alt="Profile" src="/profile_2.jpg" sx={{ width: 74, height: 74 }} />
             <Box sx={{ ml: 3 }}>
@@ -101,65 +99,8 @@ function Profile() {
           </Box>
 
           <Box sx={{ bgcolor: 'background.paper' }}>
-            {/* <Toggle /> */}
 
-             <Paper
-      elevation={0}
-      sx={{
-        display: "inline-block",
-        borderRadius: 2,
-        p: 0.5,
-        backgroundColor: "#f5f5f5",
-      }}
-    >
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        variant="standard"
-        sx={{
-          "& .MuiTabs-indicator": { display: "none" },
-        }}
-      >
-        <Tab
-          icon={<HomeIcon />}
-          label="App"
-          sx={{
-            textTransform: "none",
-            borderRadius: 2,
-            minHeight: 48,
-            minWidth: 120,
-            backgroundColor: value === 0 ? "white" : "transparent",
-            boxShadow: value === 0 ? 1 : "none",
-          }}
-        />
-        <Tab
-          icon={<EmailIcon />}
-          label="Message"
-          sx={{
-            textTransform: "none",
-            borderRadius: 2,
-            minHeight: 48,
-            minWidth: 120,
-            backgroundColor: value === 1 ? "white" : "transparent",
-            boxShadow: value === 1 ? 1 : "none",
-          }}
-        />
-        <Tab
-          icon={<SettingsIcon />}
-          label="Settings"
-          sx={{
-            textTransform: "none",
-            borderRadius: 2,
-            minHeight: 48,
-            minWidth: 120,
-            backgroundColor: value === 2 ? "white" : "transparent",
-            boxShadow: value === 2 ? 1 : "none",
-          }}
-        />
-      </Tabs>
-    </Paper>
-              
-            {/* <NavTabs /> */}
+            <NavTabs />
           </Box>
         </Box>
 
@@ -375,15 +316,15 @@ function Profile() {
         </Box>
       </Box>
 
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'white', color: 'grey' }}>
-        
-        <Box sx={{ display: 'flex', alignItems: 'center', px: 4, flexBasis: '500px' , flexGrow:1, textAlign: 'center', backgroundColor: 'white'}}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'white', color: 'grey', flexWrap: 'wrap' }} className='footer'>
+
+        <Box sx={{ display: 'flex', px: 4, textAlign: 'center', backgroundColor: 'white', }}>
           <Typography variant="body2" >&copy; 2025, made with</Typography>
           <FavoriteIcon sx={{ width: 16, height: 16, mx: .3, color: 'grey' }} />
           <Typography variant="body2"> by <span style={{ color: 'black' }}>Creative Tim</span> for a better web.</Typography>
         </Box>
-        
-        <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', fontSize: 14, fontWeight: 400 }}>
           <a href='https://www.creative-tim.com/' target='_blank' style={{ textDecoration: 'none', color: 'inherit', margin: '15px' }}>Creative Tim</a>
           <a href='https://www.creative-tim.com/presentation' target='_blank' style={{ textDecoration: 'none', color: 'inherit', margin: '15px' }}>About Us</a>
           <a href='https://www.creative-tim.com/blog' target='_blank' style={{ textDecoration: 'none', color: 'inherit', margin: '15px' }}>Blog</a>

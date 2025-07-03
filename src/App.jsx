@@ -56,7 +56,7 @@ function App() {
               border: '1px solid rgba(229, 229, 229)',
               overflow: "auto",
               top: 0,
-              zIndex:1200
+              zIndex: 1200
             }}
           >
             <Box sx={{ display: "flex", alignItems: "center", px: 2, pt: 1 }}>

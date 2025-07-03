@@ -94,7 +94,7 @@ export default function CustomDrawer() {
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', my: 2 }}>
 
-        <Typography sx={{ fontSize: 16, fontWeight: 700 }} >Navbar Fixed</Typography><Switch {...label} className='toggle' />
+        <Typography sx={{ fontSize: 16, fontWeight: 700 }} >Navbar Fixed</Typography><Switch {...label} className='toggle' defaultChecked />
       </Box>
       <Divider sx={{ my: 2 }} />
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', my: 2 }}>
