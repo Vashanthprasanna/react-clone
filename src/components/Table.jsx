@@ -25,14 +25,18 @@ export default function BasicTable() {
     const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
     return (
-        <TableContainer >
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableContainer  >
+            <Table sx={{
+                minWidth: 650, "& .MuiTableCell-root": {
+                    borderBottom: "none", padding: 1,
+                }
+            }} aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>Activity</TableCell>
-                        <TableCell align="right">Email</TableCell>
-                        <TableCell align="right">Push</TableCell>
-                        <TableCell align="right">SMS</TableCell>
+                        <TableCell sx={{ fontSize: 16, fontWeight: 400, color: 'grey' }}>Activity</TableCell>
+                        <TableCell sx={{ fontSize: 16, fontWeight: 400, color: 'grey' }} align="right">Email</TableCell>
+                        <TableCell sx={{ fontSize: 16, fontWeight: 400, color: 'grey' }} align="right">Push</TableCell>
+                        <TableCell sx={{ fontSize: 16, fontWeight: 400, color: 'grey' }} align="right">SMS</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -41,8 +45,8 @@ export default function BasicTable() {
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                         <TableCell component="th" scope="row">
-                            <Typography variant="body1" color="initial">Mentions</Typography>
-                            <Typography variant="body2" color="initial">Notify when another user mentions you in a comment</Typography>
+                            <Typography variant="body2" sx={{ fontSize: 14 }}>Mentions</Typography>
+                            <Typography variant="body2" sx={{ py: .5, color: 'grey' }}>Notify when another user mentions you in a comment</Typography>
                         </TableCell>
                         <TableCell align="right"><Switch {...label} defaultChecked> </Switch></TableCell>
                         <TableCell align="right"><Switch {...label}> </Switch></TableCell>
@@ -53,8 +57,8 @@ export default function BasicTable() {
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                         <TableCell component="th" scope="row">
-                            <Typography variant="body1" color="initial">Comments</Typography>
-                            <Typography variant="body2" color="initial">Notify when another user comments your item.</Typography>
+                            <Typography variant="body2" sx={{ fontSize: 14 }}>Comments</Typography>
+                            <Typography variant="body2" sx={{ py: .5, color: 'grey' }}>Notify when another user comments your item.</Typography>
                         </TableCell>
                         <TableCell align="right"><Switch {...label} defaultChecked> </Switch></TableCell>
                         <TableCell align="right"><Switch {...label} defaultChecked> </Switch></TableCell>
@@ -65,7 +69,8 @@ export default function BasicTable() {
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                         <TableCell component="th" scope="row">
-                            <Typography variant="body1" color="initial">Log in from a new device</Typography>
+                            <Typography variant="body2" sx={{ py: .5, fontSize: 14 }}>Follows</Typography>
+                            <Typography variant="body2" sx={{ color: 'grey' }}>Notify when another user follows you.</Typography>
                         </TableCell>
                         <TableCell align="right">
                             <Switch {...label}> </Switch>
@@ -78,8 +83,8 @@ export default function BasicTable() {
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                         <TableCell component="th" scope="row">
-                            <Typography variant="body1" color="initial">Mentions</Typography>
-                            <Typography variant="body2" color="initial">Notify when another user mentions you in a comment</Typography>
+                            <Typography variant="body2" sx={{ color: 'grey', fontSize: 14 }}>Login from a New Device</Typography>
+
                         </TableCell>
                         <TableCell align="right"><Switch {...label} defaultChecked> </Switch></TableCell>
                         <TableCell align="right"><Switch {...label} defaultChecked> </Switch></TableCell>

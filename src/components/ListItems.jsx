@@ -18,6 +18,13 @@ import ViewInArOutlinedIcon from '@mui/icons-material/ViewInArOutlined';
 import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 import DraftsIcon from '@mui/icons-material/Drafts';
 import Avatar from '@mui/material/Avatar';
+import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
+import SecurityOutlinedIcon from '@mui/icons-material/SecurityOutlined';
+import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
+import CampaignOutlinedIcon from '@mui/icons-material/CampaignOutlined';
+import SettingsApplicationsOutlinedIcon from '@mui/icons-material/SettingsApplicationsOutlined';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useState } from 'react';
 // import { Link } from "react-router-dom";
 
@@ -217,6 +224,14 @@ function ListButton(props) {
 
   const iconMap = {
     'Change Log': <ReceiptLongOutlinedIcon sx={{ fontSize: 20 }} />,
+    'Profile': <PersonOutlinedIcon sx={{ fontSize: 20 }} />,
+    'Basic Info': <ReceiptLongOutlinedIcon sx={{ fontSize: 20 }} />,
+    'Change Password': <LockOutlinedIcon sx={{ fontSize: 20 }} />,
+    '2FA': <SecurityOutlinedIcon sx={{ fontSize: 20 }} />,
+    'Accounts': <BadgeOutlinedIcon sx={{ fontSize: 20 }} />,
+    'Notifications': <CampaignOutlinedIcon sx={{ fontSize: 20 }} />,
+    'Sessions': <SettingsApplicationsOutlinedIcon sx={{ fontSize: 20 }} />,
+    'Delete Account': <DeleteOutlinedIcon sx={{ fontSize: 20 }} />,
   }
 
   return (
@@ -226,7 +241,7 @@ function ListButton(props) {
           <ListItemIcon sx={{ minWidth: 32 }}>
             {iconMap[props.title] || <DraftsIcon sx={{ fontSize: 20, color: 'grey' }} />}
           </ListItemIcon>
-          <ListItemText primary={props.title} sx={{ '.MuiTypography-root': { fontSize: '12px' } }} />
+          <ListItemText primary={props.title} sx={{ '.MuiTypography-root': { fontSize: '14px', fontWeight: '400' } }} />
         </ListItemButton>
       </ListItem>
     </>

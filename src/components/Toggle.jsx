@@ -26,10 +26,10 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
     },
   },
   [`& .${toggleButtonGroupClasses.middleButton},& .${toggleButtonGroupClasses.lastButton}`]:
-    {
-      marginLeft: -1,
-      borderLeft: '1px solid transparent',
-    },
+  {
+    marginLeft: -1,
+    borderLeft: '1px solid transparent',
+  },
 }));
 
 export default function Toggle() {
@@ -70,7 +70,7 @@ export default function Toggle() {
           <ToggleButton value="right" aria-label="right aligned">
             <FormatAlignRightIcon />
           </ToggleButton>
-          
+
         </StyledToggleButtonGroup>
       </Paper>
     </div>

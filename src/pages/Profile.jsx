@@ -318,7 +318,7 @@ function Profile() {
 
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'white', color: 'grey', flexWrap: 'wrap' }} className='footer'>
 
-        <Box sx={{ display: 'flex', px: 4, textAlign: 'center', backgroundColor: 'white', }}>
+        <Box sx={{ display: 'flex', px: 4, textAlign: 'center', backgroundColor: 'white', alignItems: 'center', }}>
           <Typography variant="body2" >&copy; 2025, made with</Typography>
           <FavoriteIcon sx={{ width: 16, height: 16, mx: .3, color: 'grey' }} />
           <Typography variant="body2"> by <span style={{ color: 'black' }}>Creative Tim</span> for a better web.</Typography>
