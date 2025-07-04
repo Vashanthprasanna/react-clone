@@ -224,14 +224,14 @@ function ListButton(props) {
 
   const iconMap = {
     'Change Log': <ReceiptLongOutlinedIcon sx={{ fontSize: 20 }} />,
-    'Profile': <PersonOutlinedIcon sx={{ fontSize: 20 }} />,
-    'Basic Info': <ReceiptLongOutlinedIcon sx={{ fontSize: 20 }} />,
-    'Change Password': <LockOutlinedIcon sx={{ fontSize: 20 }} />,
-    '2FA': <SecurityOutlinedIcon sx={{ fontSize: 20 }} />,
-    'Accounts': <BadgeOutlinedIcon sx={{ fontSize: 20 }} />,
-    'Notifications': <CampaignOutlinedIcon sx={{ fontSize: 20 }} />,
-    'Sessions': <SettingsApplicationsOutlinedIcon sx={{ fontSize: 20 }} />,
-    'Delete Account': <DeleteOutlinedIcon sx={{ fontSize: 20 }} />,
+    'Profile': <PersonOutlinedIcon sx={{ fontSize: 22, color: 'black' }} />,
+    'Basic Info': <ReceiptLongOutlinedIcon sx={{ fontSize: 22, color: 'black' }} />,
+    'Change Password': <LockOutlinedIcon sx={{ fontSize: 22, color: 'black' }} />,
+    '2FA': <SecurityOutlinedIcon sx={{ fontSize: 22, color: 'black' }} />,
+    'Accounts': <BadgeOutlinedIcon sx={{ fontSize: 22, color: 'black' }} />,
+    'Notifications': <CampaignOutlinedIcon sx={{ fontSize: 22, color: 'black' }} />,
+    'Sessions': <SettingsApplicationsOutlinedIcon sx={{ fontSize: 22, color: 'black' }} />,
+    'Delete Account': <DeleteOutlinedIcon sx={{ fontSize: 22, color: 'black' }} />,
   }
 
   return (

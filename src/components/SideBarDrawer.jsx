@@ -163,7 +163,7 @@ export default function SideBarDrawer() {
                 <React.Fragment key={anchor}>
                     {/* <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button> */}
                     <IconButton onClick={toggleDrawer(anchor, true)} >
-                        {drawerOpen ? <MenuOutlinedIcon /> : <MenuOpenOutlinedIcon />}
+                        {drawerOpen ? <MenuOutlinedIcon sx={{ width: 20 }} /> : <MenuOpenOutlinedIcon sx={{ width: 20 }} />}
                     </IconButton>
                     <Drawer
                         anchor={anchor}
