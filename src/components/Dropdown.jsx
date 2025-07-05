@@ -30,7 +30,7 @@ function Dropdown(props) {
                         PaperProps: {
                             style: {
                                 maxHeight: 200,
-                                // height in px, adjust as needed
+                                
                             },
                         },
                     }}
@@ -84,7 +84,6 @@ function MultipleSelectChip() {
             target: { value },
         } = event;
         setPersonName(
-            // On autofill we get a stringified value.
             typeof value === 'string' ? value.split(',') : value,
         );
     };
@@ -183,7 +182,7 @@ function MultiSelectWithChips(props) {
                                         width: 15
                                     },
                                     "& .MuiChip-deleteIcon:hover": {
-                                        color: "white",   // ensure stays white on hover
+                                        color: "white",  
                                     },
                                     fontSize: 12, height: 27
                                 }}

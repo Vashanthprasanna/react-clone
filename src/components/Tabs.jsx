@@ -12,13 +12,20 @@ export default function CombinedTabs(props) {
         setValue(newValue);
     };
 
+    const iconMap = {
+        'App': <HomeOutlinedIcon sx={{ fontSize: 20 }} />,
+        'Messages': <EmailOutlinedIcon sx={{ fontSize: 22, color: 'black' }} />,
+        'Settings': <SettingsOutlinedIcon sx={{ fontSize: 22, color: 'black' }} />,
+    }
+
     return (
         <Box
             sx={{
                 backgroundColor: "#f5f5f5",
                 borderRadius: 2,
-                width: isSmall ? 220 : "100%",
+                width: isSmall ? "100%" : "100%",
                 p: 1,
+                mt: 2
             }}
         >
             <Tabs
@@ -38,7 +45,7 @@ export default function CombinedTabs(props) {
                         minHeight: "auto",
                         px: 2,
                         py: 1,
-                        transition: "background-color 0.3s ease, box-shadow 0.3s ease",  // transition here
+                        transition: "background-color 0.3s ease, box-shadow 0.3s ease", 
                     },
                     "& .Mui-selected": {
                         backgroundColor: "white",
@@ -50,8 +57,9 @@ export default function CombinedTabs(props) {
                 }}
             >
                 {
-                    props.options.map((option) => (
-                        <Tab icon={<HomeOutlinedIcon />} iconPosition="start" label={option} />
+                    props.options.map((option, index) => (
+                        <Tab key={index} icon={iconMap[option] || ""}
+                            iconPosition="start" label={option} />
                     ))
                 }
             </Tabs>

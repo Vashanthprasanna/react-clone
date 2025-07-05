@@ -84,7 +84,7 @@ function Settings() {
           <Tab label='Backup' />
         </Tabs> */}
 
-        <CombinedTabs options={['Messages', 'Social', 'Notifications', 'Backup']}></CombinedTabs>
+        <CombinedTabs options={['Message', 'Social', 'Notifications', 'Backup']}></CombinedTabs>
 
         {/* body */}
 
@@ -223,7 +223,11 @@ function Settings() {
 
                   <Box sx={{ flexBasis: 50, flexGrow: 1, mr: 2, my: 1 }}>
                     <InputLabel htmlFor="component-helper">Phone Number</InputLabel>
-                    <Input placeholder="+40 735 631 620" inputProps={ariaLabel} sx={{ width: '100%' }} />
+                    <Input type="number" placeholder="+40 735 631 620" inputProps={{
+                      inputMode: "numeric",
+                      pattern: "[0-9 ]*",
+                      min: 0
+                    }} sx={{ width: '100%' }} />
                   </Box>
                 </Box>
 
@@ -253,13 +257,13 @@ function Settings() {
 
                 {/* Input fields */}
 
-                <TextField id="outlined-basic" label="Current Password" variant="outlined" sx={{ width: '100%', mt: 2 }} />
+                <TextField id="outlined-basic" label="Current Password" variant="outlined" sx={{ width: '100%', mt: 2 }} size="small" />
 
 
-                <TextField id="outlined-basic" label="New Password" variant="outlined" sx={{ width: '100%', mt: 2 }} />
+                <TextField id="outlined-basic" label="New Password" variant="outlined" sx={{ width: '100%', mt: 2 }} size="small" />
 
 
-                <TextField id="outlined-basic" label="Confirm New Password" variant="outlined" sx={{ width: '100%', mt: 2 }} />
+                <TextField id="outlined-basic" label="Confirm New Password" variant="outlined" sx={{ width: '100%', mt: 2, }} size="small" />
 
 
                 {/* Password requirements */}
@@ -378,7 +382,7 @@ function Settings() {
                       },
                     }} size='small' sx={{
                       width: 100, "& .MuiInputBase-input": {
-                        fontSize: "12px", // control the font size
+                        fontSize: "12px",
                       },
                     }}
                   />
