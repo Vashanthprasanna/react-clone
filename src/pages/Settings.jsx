@@ -25,39 +25,20 @@ import SideBarDrawer from '../components/SideBarDrawer';
 import HomeIcon from "@mui/icons-material/HomeOutlined";
 import EmailIcon from "@mui/icons-material/EmailOutlined";
 import SettingsIcon from "@mui/icons-material/SettingsOutlined";
-import Toggle from '../components/Toggle.jsx'
 import Input from '@mui/material/Input';
 import CombinedTabs from '../components/Tabs.jsx';
-// import {Dropdown, MultipleSelectChip} from '../components/Dropdown.jsx';
-import { Dropdown, MultipleSelectChip, ClickableAndDeletableChips, MultiSelectWithChips } from '../components/Dropdown.jsx';
+import { Dropdown,MultiSelectWithChips } from '../components/Dropdown.jsx';
 import { ListItems, ListButton, ListItemWithImg, NestedList } from "../components/ListItems.jsx";
-
 import '../App.css';
-
-import { styled } from '@mui/material/styles';
-import Badge, { badgeClasses } from '@mui/material/Badge';
 import BasicTable from '../components/Table.jsx';
 
-
-const CartBadge = styled(Badge)`
-  & .${badgeClasses.badge} {
-    top: -10px;
-    right: 5px;
-  }
-`;
 
 function Settings() {
 
   const ariaLabel = { 'aria-label': 'description' };
 
 
-  const [value, setValue] = useState(0);
-
   const label = { inputProps: { 'aria-label': 'Switch demo' } };
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  }
 
 
 
@@ -75,18 +56,10 @@ function Settings() {
 
       <Box sx={{ mt: 6, height: 'fit-content', }}>
 
-        {/* Tabs */}
 
-        {/* <Tabs value={value} onChange={handleChange} sx={{ mb: 4 }}>
-          <Tab label='Messages' />
-          <Tab label='Social' />
-          <Tab label='Notifications' />
-          <Tab label='Backup' />
-        </Tabs> */}
 
         <CombinedTabs options={['Message', 'Social', 'Notifications', 'Backup']}></CombinedTabs>
 
-        {/* body */}
 
 
         <Box sx={{ display: 'flex', gap: 2, }} className='settings-body'>

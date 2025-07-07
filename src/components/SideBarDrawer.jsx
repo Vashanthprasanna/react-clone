@@ -21,23 +21,14 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import MenuOpenOutlinedIcon from '@mui/icons-material/MenuOpenOutlined';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
-
-
-// packages
-
 import { useState } from "react";
-
 import "@fontsource/roboto/300.css";
 import {
     Container,
 } from "@mui/material";
 import { ListItems, ListButton, ListItemWithImg, NestedList } from "./ListItems";
 import "../App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Dashboard from "../pages/Dashboard";
-import Profile from "../pages/Profile";
-import Settings from "../pages/Settings";
-import { grey } from "@mui/material/colors";
+
 
 
 
@@ -54,9 +45,8 @@ export default function SideBarDrawer() {
     };
 
 
-    const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
-    const [state, setState] = React.useState({
+    const [state, setState] = useState({
         top: false,
         left: false,
         bottom: false,
@@ -81,8 +71,6 @@ export default function SideBarDrawer() {
 
         <Box
 
-        //   onClick={toggleDrawer(anchor, false)}
-        //   onKeyDown={toggleDrawer(anchor, false)}
         >
             <Container
                 disableGutters

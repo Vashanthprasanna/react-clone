@@ -31,6 +31,7 @@ import { useState } from 'react';
 
 
 function ListItems(props) {
+    const navigate = useNavigate();
   // const [open, setOpen] = useState(false);
   const isOpen = props.activeParent === props.title;
 
@@ -83,7 +84,7 @@ function ListItems(props) {
           <List component="div" disablePadding>
 
             {listMap[props.title]?.map((item, index) => (
-              <ListItemButton key={item} sx={{ pl: 3 }}>
+              <ListItemButton key={item} sx={{ pl: 3 }} onClick={() => navigate(`/${item}`)}>
                 {/* <ListItem key={index} disablePadding> */}
 
                 <Box>{item.charAt(0)}</Box>
@@ -103,10 +104,7 @@ function ListItems(props) {
 }
 
 function NestedList(props) {
-  // const [open, setOpen] = useState(false);
-  // const [openChildKey, setOpenChildKey] = useState(null);
-  // const [selectedChild, setSelectedChild] = useState(null);
-
+    const navigate = useNavigate();
 
 
   const isOpen = props.activeParent === props.title;
@@ -117,8 +115,7 @@ function NestedList(props) {
   };
 
   const handleChildClick = (item) => {
-    // setSelectedChild(item);
-    // setOpenChildKey((prev) => (prev === item ? null : item));
+
     props.setActiveChild(props.activeChild === item ? null : item);
   };
 
@@ -191,7 +188,7 @@ function NestedList(props) {
                   <Collapse in={props.activeChild === item} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                       {listItemsMap[item]?.map((subItem, index) => (
-                        <ListItemButton key={subItem} sx={{ pl: 3 }}>
+                        <ListItemButton key={subItem} sx={{ pl: 3 }} onClick={() => navigate(`/${subItem}`)}>
 
                           <Box>{subItem.charAt(0)}</Box>
                           <ListItemText primary={subItem} sx={{ '.MuiTypography-root': { fontSize: '12px' }, pl: 2 }} />
@@ -204,7 +201,7 @@ function NestedList(props) {
                   </Collapse>
                 </div>
               ) : (
-                <ListItemButton key={item} sx={{ pl: 3 }}>
+                <ListItemButton key={item} sx={{ pl: 3 }} onClick={() => navigate(`/${item}`)}>
                   <Box>{item.charAt(0)}</Box>
                   <ListItemText primary={item} sx={{ '.MuiTypography-root': { fontSize: '12px' }, pl: 2 }} />
                 </ListItemButton>
@@ -221,6 +218,7 @@ function NestedList(props) {
 }
 
 function ListButton(props) {
+    const navigate = useNavigate();
 
   const iconMap = {
     'Change Log': <ReceiptLongOutlinedIcon sx={{ fontSize: 20 }} />,
@@ -237,7 +235,7 @@ function ListButton(props) {
   return (
     <>
       <ListItem disablePadding>
-        <ListItemButton>
+        <ListItemButton onClick={() => navigate(`/${props.title}`)}>
           <ListItemIcon sx={{ minWidth: 32 }}>
             {iconMap[props.title] || <DraftsIcon sx={{ fontSize: 20, color: 'grey' }} />}
           </ListItemIcon>
@@ -249,12 +247,12 @@ function ListButton(props) {
 }
 
 function ListItemWithImg(props) {
-  // const [open, setOpen] = useState(false);
+
   const isOpen = props.activeParent === props.title;
   const navigate = useNavigate();
 
   const handleClick = () => {
-    // setOpen((prev) => !prev);
+
     props.setActiveParent(isOpen ? null : props.title);
   };
 

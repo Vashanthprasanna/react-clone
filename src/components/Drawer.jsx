@@ -19,11 +19,12 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
+import { useState } from "react";
 
-export default function CustomDrawer() {
+export default function CustomDrawer(props) {
   const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
-  const [state, setState] = React.useState({
+  const [state, setState] = useState({
     top: false,
     left: false,
     bottom: false,
@@ -33,10 +34,6 @@ export default function CustomDrawer() {
   const colors = ["#e91e63", "#212121", "#424242", "#4caf50", "#ff9800", "#f44336"];
 
   const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
-
     setState({ ...state, [anchor]: open });
   };
 
@@ -44,8 +41,6 @@ export default function CustomDrawer() {
     <Box
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 360, px: 5 }}
       role="presentation"
-    //   onClick={toggleDrawer(anchor, false)}
-    //   onKeyDown={toggleDrawer(anchor, false)}
     >
       <Box sx={{ my: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
 
@@ -140,21 +135,21 @@ export default function CustomDrawer() {
 
   return (
     <div>
-      {['right'].map((anchor) => (
-        <React.Fragment key={anchor}>
+      { 
+        <React.Fragment key={props.direction}>
           {/* <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button> */}
-          <IconButton onClick={toggleDrawer(anchor, true)} sx={{ right: 6, top: 5.5 }}>
+          <IconButton onClick={toggleDrawer(props.direction, true)} sx={{ right: 6, top: 5.5 }}>
             <SettingsOutlinedIcon sx={{ color: 'black' }} />
           </IconButton>
           <Drawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
+            anchor={props.direction}
+            open={state[props.direction]}
+            onClose={toggleDrawer(props.direction, false)}
           >
-            {list(anchor)}
+            {list(props.direction)}
           </Drawer>
         </React.Fragment>
-      ))}
+      }
     </div>
   );
 }

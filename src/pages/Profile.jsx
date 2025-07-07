@@ -21,7 +21,6 @@ import HomeIcon from "@mui/icons-material/HomeOutlined";
 import EmailIcon from "@mui/icons-material/EmailOutlined";
 import SettingsIcon from "@mui/icons-material/SettingsOutlined";
 import CombinedTabs from '../components/Tabs.jsx';
-import Toggle from '../components/Toggle.jsx'
 import '../App.css';
 import { styled } from '@mui/material/styles';
 import Badge, { badgeClasses } from '@mui/material/Badge';
@@ -339,7 +338,7 @@ function Profile() {
         backgroundColor: 'white', display: 'flex', justifyContent: 'end', zIndex
           : 1, position: 'fixed', bottom: 40, right: 40, borderRadius: 7, width: 52, height: 52, boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
       }}>
-        <CustomDrawer />
+        <CustomDrawer direction="right" />
       </Box>
 
     </Box>
