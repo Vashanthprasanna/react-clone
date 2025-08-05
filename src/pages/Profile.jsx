@@ -13,7 +13,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import CustomDrawer from '../components/Drawer';
 import NavTabs from '../components/NavTabs';
 import SideBarDrawer from '../components/SideBarDrawer';
@@ -24,6 +24,7 @@ import CombinedTabs from '../components/Tabs.jsx';
 import '../App.css';
 import { styled } from '@mui/material/styles';
 import Badge, { badgeClasses } from '@mui/material/Badge';
+import axios from 'axios';
 
 
 const CartBadge = styled(Badge)`
@@ -33,7 +34,29 @@ const CartBadge = styled(Badge)`
   }
 `;
 
+
+
 function Profile() {
+
+  const [profile, setProfile] = useState({})
+  const [projects, setProjects] = useState({})
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      axios.get('/api/data.json')
+        .then((response) => {
+          setProfile(response.data[0].profile);
+          setProjects(response.data[0].projects);
+          console.log("Profile data fetched successfully:");
+          console.log("Projects data fetched successfully:");
+        })
+        .catch((error) => {
+          console.error("Error fetching profile data:", error);
+      })
+    }
+    fetchProfile();
+},[]);
+
   const [value, setValue] = useState(0);
 
   const label = { inputProps: { 'aria-label': 'Switch demo' } };
@@ -45,7 +68,11 @@ function Profile() {
 
 
   return (
+
+    
     <Box sx={{ mx: 2, mt: 4, backgroundColor: 'f5f5f5', height: 'fit-content' }}>
+
+  
 
       <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', width: '100%', position: 'sticky', top: 20, zIndex: 2, borderRadius: 2, px: 1, backdropFilter: 'saturate(200%) blur(200px)', backgroundColor: 'rgba(255, 255, 255, 0.8)', }}>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>
@@ -93,8 +120,8 @@ function Profile() {
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Avatar alt="Profile" src="/profile_2.jpg" sx={{ width: 74, height: 74 }} />
             <Box sx={{ ml: 3 }}>
-              <Typography variant='h6'>Richard Davis</Typography>
-              <Typography sx={{ color: 'grey' }}>CEO / Co-Founder</Typography>
+              <Typography variant='h6'>{profile.name}</Typography>
+              <Typography sx={{ color: 'grey' }}>{profile.role}</Typography>
             </Box>
           </Box>
 
@@ -148,13 +175,13 @@ function Profile() {
             </Box>
 
 
-            <Typography sx={{ my: 2, fontSize: 14, fontWeight: 400, color: 'grey' }}>Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality).</Typography>
+            <Typography sx={{ my: 2, fontSize: 14, fontWeight: 400, color: 'grey' }}>{profile.description}</Typography>
 
 
-            <Typography sx={{ mt: 1, fontSize: 14, fontWeight: 400, color: 'grey' }}><span style={{ fontSize: 14, fontWeight: 700, color: 'black', marginRight: 5 }}>Full Name: </span> Alec M. Thompson </Typography>
-            <Typography sx={{ mt: 1, fontSize: 14, fontWeight: 400, color: 'grey' }}><span style={{ fontSize: 14, fontWeight: 700, color: 'black', marginRight: 5 }}>Mobile: </span> (44) 123 1234 123 </Typography>
-            <Typography sx={{ mt: 1, fontSize: 14, fontWeight: 400, color: 'grey' }}><span style={{ fontSize: 14, fontWeight: 700, color: 'black', marginRight: 5 }}>Email: </span> alecthompson@mail.com </Typography>
-            <Typography sx={{ mt: 1, fontSize: 14, fontWeight: 400, color: 'grey' }}><span style={{ fontSize: 14, fontWeight: 700, color: 'black', marginRight: 5 }}>Location: </span> USA </Typography>
+            <Typography sx={{ mt: 1, fontSize: 14, fontWeight: 400, color: 'grey' }}><span style={{ fontSize: 14, fontWeight: 700, color: 'black', marginRight: 5 }}>Full Name: </span> {profile.fullName}</Typography>
+            <Typography sx={{ mt: 1, fontSize: 14, fontWeight: 400, color: 'grey' }}><span style={{ fontSize: 14, fontWeight: 700, color: 'black', marginRight: 5 }}>Mobile: </span> {profile.mobile}</Typography>
+            <Typography sx={{ mt: 1, fontSize: 14, fontWeight: 400, color: 'grey' }}><span style={{ fontSize: 14, fontWeight: 700, color: 'black', marginRight: 5 }}>Email: </span> {profile.email}</Typography>
+            <Typography sx={{ mt: 1, fontSize: 14, fontWeight: 400, color: 'grey' }}><span style={{ fontSize: 14, fontWeight: 700, color: 'black', marginRight: 5 }}>Location: </span> {profile.location} </Typography>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <Typography sx={{ mt: 1 }}><span style={{ fontSize: 14, fontWeight: 700, color: 'black', marginRight: 5 }}>Social: </span> </Typography>
               <FacebookIcon sx={{ color: '#3b5998', ml: 1, mt: 1 }} />
@@ -173,10 +200,10 @@ function Profile() {
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', my: 2 }}>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
 
-                <Avatar src='./conv_profile_1.jpg' alt='profile' sx={{ width: 48, height: 48 }}></Avatar>
+                <Avatar src={profile.conversations?.[0]?.img} alt='profile' sx={{ width: 48, height: 48 }}></Avatar>
                 <Box sx={{ display: 'flex', flexDirection: 'column', ml: 2 }}>
-                  <Typography variant='body1' sx={{ fontSize: 14, fontWeight: 600 }}>Sophie B.</Typography>
-                  <Typography variant='body2' sx={{ color: 'grey', fontSize: 12, fontWeight: 400 }}>Hi! I need more information..</Typography>
+                  <Typography variant='body1' sx={{ fontSize: 14, fontWeight: 600 }}>{profile.conversations?.[0]?.name}</Typography>
+                  <Typography variant='body2' sx={{ color: 'grey', fontSize: 12, fontWeight: 400 }}>{ profile.conversations?.[0]?.description}</Typography>
                 </Box>
               </Box>
               <Button variant='text' sx={{ ml: 2, fontSize: 12, fontWeight: 700, textTransform: 'none' }}>Reply</Button>
@@ -186,10 +213,10 @@ function Profile() {
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', my: 2 }}>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
 
-                <Avatar src='./conv_profile_2.jpg' alt='profile' sx={{ width: 48, height: 48 }}></Avatar>
+                <Avatar src={profile.conversations?.[1]?.img} alt='profile' sx={{ width: 48, height: 48 }}></Avatar>
                 <Box sx={{ display: 'flex', flexDirection: 'column', ml: 2 }}>
-                  <Typography variant='body1' sx={{ fontSize: 14, fontWeight: 600 }}>Anne Marie</Typography>
-                  <Typography variant='body2' sx={{ color: 'grey', fontSize: 12, fontWeight: 400 }}>Awesome work, can you..</Typography>
+                  <Typography variant='body1' sx={{ fontSize: 14, fontWeight: 600 }}>{ profile.conversations?.[1]?.name}</Typography>
+                  <Typography variant='body2' sx={{ color: 'grey', fontSize: 12, fontWeight: 400 }}>{ profile.conversations?.[1]?.description}</Typography>
                 </Box>
               </Box>
               <Button variant='text' sx={{ ml: 2, fontSize: 12, fontWeight: 700, textTransform: 'none' }}>Reply</Button>
@@ -198,10 +225,10 @@ function Profile() {
 
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', my: 2 }}>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <Avatar src='./conv_profile_3.jpg' alt='profile' sx={{ width: 48, height: 48 }}></Avatar>
+                <Avatar src={profile.conversations?.[2]?.img} alt='profile' sx={{ width: 48, height: 48 }}></Avatar>
                 <Box sx={{ display: 'flex', flexDirection: 'column', ml: 2 }}>
-                  <Typography variant='body1' sx={{ fontSize: 14, fontWeight: 600 }}>Ivanna</Typography>
-                  <Typography variant='body2' sx={{ color: 'grey', fontSize: 12, fontWeight: 400 }}>About files I can..</Typography>
+                  <Typography variant='body1' sx={{ fontSize: 14, fontWeight: 600 }}>{ profile.conversations?.[2]?.name}</Typography>
+                  <Typography variant='body2' sx={{ color: 'grey', fontSize: 12, fontWeight: 400 }}>{ profile.conversations?.[2]?.description}</Typography>
                 </Box>
 
               </Box>
@@ -212,10 +239,10 @@ function Profile() {
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', my: 2 }}>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
 
-                <Avatar src='./conv_profile_4.jpg' alt='profile' sx={{ width: 48, height: 48 }}></Avatar>
+                <Avatar src={profile.conversations?.[3]?.img} alt='profile' sx={{ width: 48, height: 48 }}></Avatar>
                 <Box sx={{ display: 'flex', flexDirection: 'column', ml: 2 }}>
-                  <Typography variant='body1' sx={{ fontSize: 14, fontWeight: 600 }}>Peterson</Typography>
-                  <Typography variant='body2' sx={{ color: 'grey', fontSize: 12, fontWeight: 400 }}>Have a great afternoon..</Typography>
+                  <Typography variant='body1' sx={{ fontSize: 14, fontWeight: 600 }}>{ profile.conversations?.[3]?.name}</Typography>
+                  <Typography variant='body2' sx={{ color: 'grey', fontSize: 12, fontWeight: 400 }}>{ profile.conversations?.[3]?.description}</Typography>
                 </Box>
               </Box>
               <Button variant='text' sx={{ ml: 2, fontSize: 12, fontWeight: 700, textTransform: 'none' }}>Reply</Button>
@@ -225,10 +252,10 @@ function Profile() {
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', my: 2 }}>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
 
-                <Avatar src='./profile.jpg' alt='profile' sx={{ width: 48, height: 48 }}></Avatar>
+                <Avatar src={profile.conversations?.[4]?.img} alt='profile' sx={{ width: 48, height: 48 }}></Avatar>
                 <Box sx={{ display: 'flex', flexDirection: 'column', ml: 2 }}>
-                  <Typography variant='body1' sx={{ fontSize: 14, fontWeight: 600 }}>Nick Daniel</Typography>
-                  <Typography variant='body2' sx={{ color: 'grey', fontSize: 12, fontWeight: 400 }}>Hi! I need more information..</Typography>
+                  <Typography variant='body1' sx={{ fontSize: 14, fontWeight: 600 }}>{ profile.conversations?.[4]?.name}</Typography>
+                  <Typography variant='body2' sx={{ color: 'grey', fontSize: 12, fontWeight: 400 }}>{ profile.conversations?.[4]?.description}</Typography>
                 </Box>
               </Box>
               <Button variant='text' sx={{ ml: 2, fontSize: 12, fontWeight: 700, textTransform: 'none' }}>Reply</Button>
@@ -239,7 +266,7 @@ function Profile() {
         </Box>
 
         <Box sx={{ width: '100%', my: 3, mt: 6, }}>
-          <Typography Typography variant='h6' sx={{ px: 4, fontSize: 16, fontWeight: 600, my: 1 }}>Projects</Typography>
+          <Typography variant='h6' sx={{ px: 4, fontSize: 16, fontWeight: 600, my: 1 }}>Projects</Typography>
           <Typography variant='body2' sx={{ color: 'grey', px: 4, fontSize: 14, fontWeight: 400 }}>
             Architects design houses
           </Typography>
@@ -248,10 +275,10 @@ function Profile() {
         <Box sx={{ display: 'flex', flexWrap: 'wrap', px: 3, pb: 2, gap: 5, justifyContent: 'center' }}>
 
           <Box sx={{ flexBasis: '180px', flexGrow: 1, mt: 3, height: 'fit-content', py: 1 }}>
-            <img src="./proj_1.jpg" alt="Project 1" width="auto" style={{ borderRadius: '10px', maxWidth: "100%" }} />
-            <Typography variant='body2' sx={{ color: 'grey', fontSize: 14, fontWeight: 400, my: 1 }}>Project #1</Typography>
-            <Typography variant='h6'>Modern</Typography>
-            <Typography variant='body2' sx={{ color: 'grey', my: 1 }}>As Uber works through a huge amount of internal management turmoil.</Typography>
+            <img src={projects?.[0]?.img} alt="Project 1" width="auto" style={{ borderRadius: '10px', maxWidth: "100%" }} />
+            <Typography variant='body2' sx={{ color: 'grey', fontSize: 14, fontWeight: 400, my: 1 }}>{projects?.[0]?.title}</Typography>
+            <Typography variant='h6'>{projects?.[0]?.name}</Typography>
+            <Typography variant='body2' sx={{ color: 'grey', my: 1 }}>{projects?.[0]?.description}</Typography>
 
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 2 }}>
               <Button variant='outlined' sx={{ borderRadius: 2, fontSize: 10, fontWeight: 700 }}>View Project</Button>
@@ -265,10 +292,10 @@ function Profile() {
           </Box>
 
           <Box sx={{ flexBasis: '180px', flexGrow: 1, mt: 3, height: 'fit-content', py: 1 }}>
-            <img src="./proj_2.jpg" alt="Project 2" width="auto" style={{ borderRadius: '10px', maxWidth: "100%" }} />
-            <Typography variant='body2' sx={{ color: 'grey', fontSize: 14, fontWeight: 400, my: 1 }}>Project #2</Typography>
-            <Typography variant='h6'>Scandinavian</Typography>
-            <Typography variant='body2' sx={{ color: 'grey', my: 1 }}>Music is something that everyone has their own specific opinion about.</Typography>
+            <img src={projects?.[1]?.img} alt="Project 2" width="auto" style={{ borderRadius: '10px', maxWidth: "100%" }} />
+            <Typography variant='body2' sx={{ color: 'grey', fontSize: 14, fontWeight: 400, my: 1 }}>{projects?.[1]?.title}</Typography>
+            <Typography variant='h6'>{projects?.[1]?.name}</Typography>
+            <Typography variant='body2' sx={{ color: 'grey', my: 1 }}>{projects?.[1]?.description}</Typography>
 
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 2 }}>
               <Button variant='outlined' sx={{ borderRadius: 2, fontSize: 10, fontWeight: 700 }}>View Project</Button>
@@ -282,10 +309,10 @@ function Profile() {
           </Box>
 
           <Box sx={{ flexBasis: '180px', flexGrow: 1, mt: 3, height: 'fit-content', py: 1 }}>
-            <img src="./proj_3.jpg" alt="Project 3" width="auto" style={{ borderRadius: '10px', maxWidth: "100%" }} />
-            <Typography variant='body2' sx={{ color: 'grey', fontSize: 14, fontWeight: 400, my: 1 }}>Project #3</Typography>
-            <Typography variant='h6'>Minimalist</Typography>
-            <Typography variant='body2' sx={{ color: 'grey', my: 1 }}>Different people have different taste, and various types of choice & music.</Typography>
+            <img src={projects?.[2]?.img} alt="Project 3" width="auto" style={{ borderRadius: '10px', maxWidth: "100%" }} />
+            <Typography variant='body2' sx={{ color: 'grey', fontSize: 14, fontWeight: 400, my: 1 }}>{projects?.[2]?.title}</Typography>
+            <Typography variant='h6'>{projects?.[2]?.name}</Typography>
+            <Typography variant='body2' sx={{ color: 'grey', my: 1 }}>{projects?.[2]?.description}</Typography>
 
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 2 }}>
               <Button variant='outlined' sx={{ borderRadius: 2, fontSize: 10, fontWeight: 700 }}>View Project</Button>
@@ -299,10 +326,10 @@ function Profile() {
           </Box>
 
           <Box sx={{ flexBasis: '180px', flexGrow: 1, mt: 3, height: 'fit-content', py: 1, maxWidth: 'fit-content' }}>
-            <img src="./proj_4.jpeg" alt="Project 4" width="auto" style={{ borderRadius: '10px', maxWidth: "100%" }} />
-            <Typography variant='body2' sx={{ color: 'grey', fontSize: 14, fontWeight: 400, my: 1 }}>Project #4</Typography>
-            <Typography variant='h6'>Gothic</Typography>
-            <Typography variant='body2' sx={{ color: 'grey', my: 1 }}>Why would anyone pick blue over pink? Pink is obviously a better color.</Typography>
+            <img src={projects?.[3]?.img} alt="Project 4" width="auto" style={{ borderRadius: '10px', maxWidth: "100%" }} />
+            <Typography variant='body2' sx={{ color: 'grey', fontSize: 14, fontWeight: 400, my: 1 }}>{projects?.[3]?.title}</Typography>
+            <Typography variant='h6'>{projects?.[3]?.name}</Typography>
+            <Typography variant='body2' sx={{ color: 'grey', my: 1 }}>{projects?.[3]?.description}</Typography>
 
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 2 }}>
               <Button variant='outlined' sx={{ borderRadius: 2, fontSize: 10, fontWeight: 700 }}>View Project</Button>

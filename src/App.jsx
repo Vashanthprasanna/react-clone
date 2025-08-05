@@ -59,7 +59,7 @@ function App() {
           }} className="side-bar" >
 
             <Box
-              disableGutters
+              
 
             >
               <Box sx={{ display: "flex", alignItems: "center", px: 2, pt: 1 }}>
