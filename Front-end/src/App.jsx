@@ -24,6 +24,7 @@ import Settings from "./pages/Settings";
 import { grey } from "@mui/material/colors";
 import ExternalRedirect from "./pages/ExternalRedirect";
 import axios from 'axios';
+import Logout from "./pages/Logout";
 
 
 function App() {
@@ -120,6 +121,8 @@ function App() {
           <Box sx={{ ml: 30, width: 'calc(100% - 230px)', height: '100vh', overflow: 'auto' }} className="main-content">
             <Routes>
               <Route path="/" element={<Dashboard />} />
+              {/* <Route path="/logout" element={<ExternalRedirect url="https://localhost:5173/logout" page={<Logout />} />} /> */}
+              <Route path="/logout" element={<Logout />} />
               <Route path="/My Profile" element={<Profile />} />
               <Route path="/Settings" element={<Settings />} />
               <Route path="/Profile Overview" element={<Profile />} />

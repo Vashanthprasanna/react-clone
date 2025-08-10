@@ -1,12 +1,22 @@
 // ExternalRedirect.jsx
 import { useEffect } from 'react';
 
-const ExternalRedirect = ({ url }) => {
+const ExternalRedirect = ({url,page}) => {
   useEffect(() => {
-    window.open(url, "_blank", "noopener,noreferrer");
-  }, [url]);
+    {
+      if(page){
+        window.location.href = "/";
+        window.location.href = url;
+      }
+      else{
+        window.open(url, "_blank");
+        window.location.href = "/";
+      }
+    }
+    
+  }, []);
 
-  return null;
+  return page || null;
 };
 
 export default ExternalRedirect;

@@ -37,8 +37,8 @@ function Dropdown(props) {
                     }}
                 >
                     {
-                        props.options.map((option) => (
-                            <MenuItem value={option} >{option}</MenuItem>
+                        props.options?.map((option,index) => (
+                            <MenuItem key={index} value={option}>{option}</MenuItem>
                         ))}
                 </Select>
 
@@ -99,7 +99,7 @@ function MultiSelectWithChips(props) {
                 }}
                 sx={{ my: 2.5 }}
             >
-                {props.options.map((option) => (
+                {props.options?.map((option) => (
                     <MenuItem key={option} value={option}>
                         {option}
                     </MenuItem>

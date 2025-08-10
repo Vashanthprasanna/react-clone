@@ -18,7 +18,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import CustomDrawer from '../components/Drawer';
 import NavTabs from '../components/NavTabs';
 import SideBarDrawer from '../components/SideBarDrawer';
@@ -31,15 +31,24 @@ import { Dropdown,MultiSelectWithChips } from '../components/Dropdown.jsx';
 import { ListItems, ListButton, ListItemWithImg, NestedList } from "../components/ListItems.jsx";
 import '../App.css';
 import BasicTable from '../components/Table.jsx';
-
+import axios from 'axios';
 
 function Settings() {
 
   const ariaLabel = { 'aria-label': 'description' };
-
-
   const label = { inputProps: { 'aria-label': 'Switch demo' } };
+  const [settings, setSettings] = useState({});
 
+  useEffect(() => {
+    const fetchSettings = async () => {
+      try{
+        const response = await axios.get('http://localhost:3000/settings');
+        setSettings(response.data[0]);
+      }catch(error){console.error("Error fetching settings:", error);} 
+    }
+    fetchSettings();
+  
+  },[]);
 
 
   return (
@@ -70,14 +79,14 @@ function Settings() {
             <Paper elevation={2} sx={{ borderRadius: 2, position: 'sticky', top: 10 }}>
 
               <Box sx={{ my: 1, p: 2, color: 'black' }}>
-                <ListButton title="Profile" />
-                <ListButton title="Basic Info" />
-                <ListButton title="Change Password" />
-                <ListButton title="2FA" />
-                <ListButton title="Accounts" />
-                <ListButton title="Notifications" />
-                <ListButton title="Sessions" />
-                <ListButton title="Delete Account" />
+                <ListButton title={settings?.sideBarSections?.[0]} />
+                <ListButton title={settings?.sideBarSections?.[1]} />
+                <ListButton title={settings?.sideBarSections?.[2]} />
+                <ListButton title={settings?.sideBarSections?.[3]} />
+                <ListButton title={settings?.sideBarSections?.[4]} />
+                <ListButton title={settings?.sideBarSections?.[5]} />
+                <ListButton title={settings?.sideBarSections?.[6]} />
+                <ListButton title={settings?.sideBarSections?.[7]} />
               </Box>
             </Paper>
 
@@ -98,8 +107,8 @@ function Settings() {
                 <Box sx={{ display: 'flex', alignItems: 'center', }}>
                   <Avatar alt="Profile" src="/profile_2.jpg" sx={{ width: 74, height: 74 }} />
                   <Box sx={{ ml: 3 }}>
-                    <Typography variant='h6' sx={{ fontSize: '20', fontWeight: '600' }}>Alex Thompson</Typography>
-                    <Typography variant='body2' sx={{ color: 'grey', fontSize: '10', fontWeight: '600' }}>CEO / Co-Founder</Typography>
+                    <Typography variant='h6' sx={{ fontSize: '20', fontWeight: '600' }}>{settings?.name}</Typography>
+                    <Typography variant='body2' sx={{ color: 'grey', fontSize: '10', fontWeight: '600' }}>{settings?.role}</Typography>
                   </Box>
                 </Box>
                 <Box sx={{ display: "flex", alignItems: 'center', }}>
@@ -136,37 +145,19 @@ function Settings() {
 
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
                   <Box sx={{ flexBasis: 30, flexGrow: 1 }}>
-                    <Dropdown title="I'm" options={['Male', 'Female']} ></Dropdown>
+                    <Dropdown title="I'm" options={settings?.gender} ></Dropdown>
                   </Box>
 
                   <Box sx={{ flexBasis: 30, flexGrow: 1 }}>
-                    <Dropdown title="Birth Date" options={[
-                      "January", "February", "March", "April",
-                      "May", "June", "July", "August",
-                      "September", "October", "November", "December"
-                    ]}></Dropdown>
+                    <Dropdown title="Birth Date" options={settings?.months}></Dropdown>
                   </Box>
 
                   <Box sx={{ flexBasis: 30, flexGrow: 1 }}>
-                    <Dropdown options={['1', '2', '3', '4']} defaultValue="1"></Dropdown>
+                    <Dropdown options={settings?.days} defaultValue={1}></Dropdown>
                   </Box>
 
                   <Box sx={{ flexBasis: 30, flexGrow: 1 }} >
-                    <Dropdown options={[
-                      "1900", "1901", "1902", "1903", "1904", "1905", "1906", "1907", "1908", "1909",
-                      "1910", "1911", "1912", "1913", "1914", "1915", "1916", "1917", "1918", "1919",
-                      "1920", "1921", "1922", "1923", "1924", "1925", "1926", "1927", "1928", "1929",
-                      "1930", "1931", "1932", "1933", "1934", "1935", "1936", "1937", "1938", "1939",
-                      "1940", "1941", "1942", "1943", "1944", "1945", "1946", "1947", "1948", "1949",
-                      "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959",
-                      "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969",
-                      "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979",
-                      "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989",
-                      "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999",
-                      "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009",
-                      "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019",
-                      "2020", "2021"
-                    ]} defaultValue="2021"></Dropdown>
+                    <Dropdown options={settings?.years} defaultValue={2021}></Dropdown>
                   </Box>
 
                 </Box>
@@ -213,7 +204,7 @@ function Settings() {
                   </Box>
 
                   <Box sx={{ flexBasis: 50, flexGrow: 1, mr: 2, my: 1 }}>
-                    <MultiSelectWithChips title="I'm" options={['react', 'vue', 'angular', 'svelte']} ></MultiSelectWithChips>
+                    <MultiSelectWithChips title="I'm" options={settings?.languages} ></MultiSelectWithChips>
                   </Box>
                 </Box>
 
@@ -256,7 +247,7 @@ function Settings() {
                   <Button variant='contained' sx={{ borderRadius: 2, textTransform: 'none', fontSize: 12, my: 1 }} >Update Password</Button>
                 </Box>
 
-              </Box>
+              </Box>   
 
             </Paper>
 

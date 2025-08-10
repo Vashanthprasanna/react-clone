@@ -35,6 +35,63 @@ body {
   display: none;
 }
 
+.logoutPage {
+  background-image: url('https://demos.creative-tim.com/material-dashboard-pro-react/static/media/bg-sign-in-basic.f327db1d0e4b00ba3c81.jpeg');
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.bodyContainer {
+
+  height: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.logoutHeader {
+  padding-block: 35px;
+  padding-left: 200px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.signInContainer {
+  background-color: black;
+  text-align: center;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  height: 100%;
+  max-height: 490px;
+  padding: 25px;
+  gap: 20px;
+  border-radius: 5px;
+  margin-inline: 20px;
+}
+
+.signUpLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+
+.rememberMe {
+  display: flex !important;
+  align-items: center !important;
+  background-color: white !important;
+  padding-block: 5px;
+  margin-bottom: 10px;
+}
+
 @media screen and (max-width: 1200px) {
   .side-bar {
     display: none !important;
